@@ -1,0 +1,8 @@
+.btn-submit,
+.btn-option {
+    @include button-variant($tw-purple-500, $tw-purple-500);
+}
+
+.form-search {
+    width: 265px !important;
+}

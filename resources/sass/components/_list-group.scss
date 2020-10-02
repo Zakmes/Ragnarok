@@ -1,0 +1,33 @@
+.list-group-transparent .list-group-item {
+    border-left: 5px solid transparent;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+    background: none;
+    color: #4A5568;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    margin-bottom: .4rem;
+
+    .icon {
+        color: $tw-purple-600;
+    }
+}
+
+.list-group-transparent .list-group-item:hover {
+    background: $white;
+    border-left: 5px solid $tw-purple-600;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.list-group-transparent .list-group-item.active {
+    border-left: 5px solid $tw-purple-600;
+    background: $white;
+    color: #4A5568;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+
+    .icon {
+        font-weight: bold;
+        color: $tw-purple-600;
+    }
+}

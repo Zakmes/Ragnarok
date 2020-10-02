@@ -1,0 +1,41 @@
+.page-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+}
+
+.page-title-icon {
+    color: #9aa0ac;
+    font-size: 1.25rem;
+}
+
+.page-subtitle {
+    font-size: 0.8125rem;
+    color: #6e7687;
+    margin-left: 2rem;
+}
+
+.page-subtitle a {
+    color: inherit;
+}
+
+.page-options {
+    margin-left: auto;
+}
