@@ -34,12 +34,12 @@ class RestoreController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function __invoke(int $user, DeleteAction $userDeleteAction): RedirectResponse
+    public function __invoke($user, DeleteAction $userDeleteAction): RedirectResponse
     {
         $this->authorize('restore', $user);
 
         $user = $userDeleteAction->execute($user, DeleteType::RESTORE);
-        flash()->success(__("The user account from {$user->name} is successfully restored"));
+        flash()->success(__("The user account from :user is successfully restored", ['user' => $user->name]));
 
         return redirect(kioskRoute('users.show', $user));
     }

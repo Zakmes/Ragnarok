@@ -92,9 +92,9 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        return ! $model->trashed()
+        return $model->trashed()
             && $user->hasKioskUserGroup()
-            && $user->hasPermissionTo('restore-users');
+            || $user->hasKioskUserGroup() && $user->hasPermissionTo('restore-users');
     }
 
     /**
