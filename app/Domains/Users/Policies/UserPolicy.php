@@ -64,9 +64,8 @@ class UserPolicy
      */
     public function lock(User $user, User $model): bool
     {
-        return $user->hasKioskUserGroup()
-            && $user->hasPermissionTo('lock-users')
-            && $model->isNotBanned();
+        return $user->hasKioskUserGroup() && $model->isNotBanned()
+            || $user->hasKioskUserGroup() && $user->hasPermissionTo('lock-users');
     }
 
     /**
