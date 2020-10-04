@@ -64,9 +64,8 @@ class UserPolicy
      */
     public function lock(User $user, User $model): bool
     {
-        return $user->hasKioskUserGroup()
-            && $user->hasPermissionTo('lock-users')
-            && $model->isNotBanned();
+        return $user->hasKioskUserGroup() && $model->isNotBanned()
+            || $user->hasKioskUserGroup() && $user->hasPermissionTo('lock-users');
     }
 
     /**
@@ -92,9 +91,9 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        return ! $model->trashed()
+        return $model->trashed()
             && $user->hasKioskUserGroup()
-            && $user->hasPermissionTo('restore-users');
+            || $user->hasKioskUserGroup() && $user->hasPermissionTo('restore-users');
     }
 
     /**

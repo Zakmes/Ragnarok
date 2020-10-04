@@ -2,6 +2,7 @@
 
 namespace App\Domains\Users\Http\Controllers;
 
+use Illuminate\Http\Request;
 use function abort_if;
 use App\Domains\Users\Actions\LockAction;
 use App\Domains\Users\DTO\LockReasonObject;
@@ -38,13 +39,11 @@ class LockController extends Controller
      * @param  UserService $userService The business logic layer that is related to the users in the application.
      * @return Renderable
      */
-    public function index(UserService $userService): Renderable
+    public function index(Request $request, UserService $userService): Renderable
     {
-        $user = $userService->getByColumn(session()->get('email'), 'email');
+        abort_if($request->user()->isNotBanned(), Response::HTTP_NOT_FOUND);
 
-        abort_if($user->isNotBanned(), Response::HTTP_NOT_FOUND);
-
-        return view('errors.deactivated')->withUser($user)->withBanInformation($user->latestBan());
+        return view('errors.deactivated')->withUser($request->user())->withBanInformation($request->user()->latestBan());
     }
 
     /**
