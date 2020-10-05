@@ -2,7 +2,6 @@
 
 namespace App\Domains\Users\Http\Controllers;
 
-use Illuminate\Http\Request;
 use function abort_if;
 use App\Domains\Users\Actions\LockAction;
 use App\Domains\Users\DTO\LockReasonObject;
@@ -13,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use function kioskRoute;
 

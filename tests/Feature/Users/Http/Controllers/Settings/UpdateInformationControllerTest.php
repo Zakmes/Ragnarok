@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Users\Http\Controllers\Settingd;
+namespace Tests\Feature\Users\Http\Controllers\Settings;
 
 use App\Domains\Users\Http\Controllers\Settings\UpdateInformationController;
 use App\Domains\Users\Http\Requests\InformationFormRequest;
