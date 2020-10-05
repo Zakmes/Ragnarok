@@ -58,7 +58,7 @@ class UserPolicy
     /**
      * Determine whether the authenticated user can lock other user accounts.
      *
-     * @param  User $user The resource entity from the authenticated user.
+     * @param  User $user  The resource entity from the authenticated user.
      * @param  User $model The resource entity from the given user.
      * @return bool
      */
@@ -71,7 +71,7 @@ class UserPolicy
     /**
      * Determine whether the authenticated user can unlock an user account or not.
      *
-     * @param  User $user The resource entity from the authenticated user.
+     * @param  User $user  The resource entity from the authenticated user.
      * @param  User $model The resource entity from the given user.
      * @return bool
      */
@@ -85,7 +85,7 @@ class UserPolicy
     /**
      * Determine whether the authenticated user can restore a 'deleted' user account or not.
      *
-     * @param  User $user The resource entity from the authenticated user.
+     * @param  User $user  The resource entity from the authenticated user.
      * @param  User $model The resource entity from the given user.
      * @return bool
      */
