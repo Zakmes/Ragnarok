@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Domains\Activity\Models\Activity;
 use App\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use ReflectionClass;
 
 /**
  * Class ActivityFactory
