@@ -1,0 +1,11 @@
+name: Tests
+on: [pull_request]
+jobs:
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: nathanheffley/laravel-phpunit-action@master
