@@ -19,6 +19,13 @@ class Role extends SpatieRoleModel
     use HasFactory;
 
     /**
+     * Method for defining the protected fields in a mass-assign statement.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return Factory

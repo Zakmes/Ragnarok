@@ -49,7 +49,6 @@ class RoleControllerTest extends TestCase
     /** @test */
     public function userCanCreateAnNewRoleInTheApplication(): void
     {
-        Role::factory()->count(5)->make();
         $permissions = Permission::factory()->count(5)->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
@@ -59,8 +58,32 @@ class RoleControllerTest extends TestCase
         $response = $this->actingAs($me)->post(kioskRoute('roles.store'), [
             'name' => 'Role name',
             'description' => 'Role description',
+            'permission' => [$permissions[0]->name, $permissions[1]->name],
         ]);
 
         $response->assertRedirect(kioskRoute('roles.index'));
+        $response->assertSessionHas([
+            'laravel_flash_message.message' => __('The permission role is successfully saved.'),
+            'laravel_flash_message.class' => 'alert-success',
+            'laravel_flash_message.level' => 'success',
+        ]);
+
+        $role = Role::whereName('Role name')->first();
+
+        $this->assertTrue($role->hasPermissionTo($permissions[0]->name));
+        $this->assertTrue($role->hasPermissionTo($permissions[1]->name));
+    }
+
+    /** @test */
+    public function userCanSuccessfullyViewTheRoleInformation(): void
+    {
+        $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
+        $role = Role::factory()->create();
+
+        $this->assertActionUsesMiddleware(RoleController::class, 'show', ['kiosk', 'web']);
+
+        $response = $this->actingAs($me)->get(kioskRoute('roles.show', $role));
+        $response->assertSuccessful();
+        $response->assertViewIs('roles.show');
     }
 }
