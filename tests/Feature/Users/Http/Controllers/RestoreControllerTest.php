@@ -3,7 +3,6 @@
 namespace Tests\Feature\Users\Http\Controllers;
 
 use App\Domains\Users\Enums\GroupEnum;
-use App\Domains\Users\Http\Controllers\LockController;
 use App\Domains\Users\Http\Controllers\RestoreController;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
