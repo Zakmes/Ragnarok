@@ -34,6 +34,7 @@ class UpdatePasswordController extends Controller
      */
     public function __invoke(SecurityFormRequest $request, UpdateAction $updateAction): RedirectResponse
     {
+        $this->authorize('change-password', $request->user());
         $updateAction->execute($request->user(), UserPasswordObject::fromRequest($request)->only('password'));
         flash()->success(__('Your account security settings has been updated successfully.'));
 

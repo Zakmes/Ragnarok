@@ -36,7 +36,7 @@ class UserPolicy
     /**
      * Determine whether the user can create new users in the application or not.
      *
-     * @param  User $user  The resource entity from the authenticated user.
+     * @param  User $user The resource entity from the authenticated user.
      * @return bool
      */
     public function create(User $user): bool
@@ -47,7 +47,7 @@ class UserPolicy
     /**
      * Determine whether the authenticated user can update other users or not.
      *
-     * @param  User $user  The resource entity from the authenticated user.
+     * @param  User $user The resource entity from the authenticated user.
      * @return bool
      */
     public function update(User $user): bool
@@ -93,7 +93,7 @@ class UserPolicy
     {
         return $model->trashed()
             && $user->hasKioskUserGroup()
-            || $user->hasKioskUserGroup() && $user->hasPermissionTo('restore-users');
+            && $user->hasPermissionTo('restore-users');
     }
 
     /**
