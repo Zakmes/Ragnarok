@@ -24,7 +24,7 @@ class CreateAction extends BaseAction
     public function execute(DataTransferObject $dataTransferObject, ?array $permissions = []): Role
     {
         return DB::transaction(function () use ($dataTransferObject, $permissions): Role {
-            $role = $this->roleService->createRole($dataTransferObject);
+            $role = $this->roleService->storeRole($dataTransferObject);
             $role->syncPermissions($permissions);
 
             return $role;
