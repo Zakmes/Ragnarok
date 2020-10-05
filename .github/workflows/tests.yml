@@ -6,5 +6,12 @@ jobs:
     name: PHPUnit
     runs-on: ubuntu-latest
     steps:
+      - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: 7.3
+            extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+            coverage: none
+
       - uses: actions/checkout@v1
       - uses: nathanheffley/laravel-phpunit-action@master
