@@ -12,6 +12,7 @@ jobs:
             php-version: 7.3
             extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
             coverage: none
-      - name: Run tests
+      - name: Checkout Code
           uses: actions/checkout@v1
+      - name: PHP unit and feature tests
           uses: nathanheffley/laravel-phpunit-action@master
