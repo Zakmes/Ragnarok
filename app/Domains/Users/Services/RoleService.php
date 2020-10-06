@@ -38,7 +38,7 @@ class RoleService extends BaseService
      * @param  DataTransferObject $dataTransferObject
      * @return Role
      */
-    public function createRole(DataTransferObject $dataTransferObject): Model
+    public function storeRole(DataTransferObject $dataTransferObject): Model
     {
         if ($role = $this->model->create($dataTransferObject->toArray())) {
             event(new RoleCreated($role));

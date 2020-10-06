@@ -109,6 +109,8 @@ class RoleController extends Controller
     /**
      * Method for updating the permission role in the application.
      *
+     * @todo Implement flash session.
+     *
      * @param  UpdateFormRequest $request       The request instance that contains all the request information.
      * @param  Role              $role          The resource entity from the permission role.
      * @param  UpdateAction      $updateAction  The business logic layer for updating the role.
