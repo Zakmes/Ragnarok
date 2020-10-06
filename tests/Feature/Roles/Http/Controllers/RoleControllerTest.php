@@ -131,6 +131,8 @@ class RoleControllerTest extends TestCase
         $role = Role::factory()->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
+        $this->assertActionUsesMiddleware(RoleController::class, 'destroy', ['auth', 'kiosk']);
+
         $response = $this->actingAs($me)->get(kioskRoute('roles.destroy', $role));
         $response->assertRedirect(kioskRoute('roles.index'));
         $response->assertSessionHas([

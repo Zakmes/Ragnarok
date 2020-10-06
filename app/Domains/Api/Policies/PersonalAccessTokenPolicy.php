@@ -20,7 +20,7 @@ class PersonalAccessTokenPolicy
      */
     public function tokensOverview(User $user): bool
     {
-        return $user->hasPermissionTo('overview-tokens') && $user->hasKioskUserGroup();
+        return $user->hasKioskUserGroup() || $user->hasPermissionTo('overview-tokens') && $user->hasKioskUserGroup();
     }
 
     /**
@@ -33,9 +33,8 @@ class PersonalAccessTokenPolicy
     public function revokeToken(User $user, PersonalAccessToken $accessToken): bool
     {
         return $user->is($accessToken->tokenable)
-            || $user->hasPermissionTo('revoke-tokens')
-            && $user->hasKioskUserGroup()
-            && ! $accessToken->trashed();
+            || $user->hasPermissionTo('revoke-tokens') && $user->hasKioskUserGroup() && ! $accessToken->trashed()
+            || $user->hasKioskUserGroup() && ! $accessToken->trashed();
     }
 
     /**

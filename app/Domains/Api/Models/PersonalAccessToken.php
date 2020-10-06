@@ -2,6 +2,9 @@
 
 namespace App\Domains\Api\Models;
 
+use Database\Factories\PersonalAccessTokenFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\PersonalAccessToken as PersonalAccessTokenLaravel;
 
@@ -15,6 +18,7 @@ use Laravel\Sanctum\PersonalAccessToken as PersonalAccessTokenLaravel;
 class PersonalAccessToken extends PersonalAccessTokenLaravel
 {
     use SoftDeletes;
+    use HasFactory;
 
     /**
      * Method for determining if the user can revoke an personal access token.
@@ -35,4 +39,15 @@ class PersonalAccessToken extends PersonalAccessTokenLaravel
     {
         return $this->trashed() && auth()->user()->can('activate-token', $this);
     }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return PersonalAccessTokenFactory::new();
+    }
+
 }
