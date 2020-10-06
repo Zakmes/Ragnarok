@@ -21,8 +21,8 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, php-mysql
           coverage: none
 
-      - name: Copy environment file
-        run: cp .env.example .env
+      - name: Copy testing environment file
+        run: cp .github/.env.testing .env
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
