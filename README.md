@@ -1,4 +1,6 @@
-# Ragnarok Boilerplate
+<p align="center"><img src="https://user-images.githubusercontent.com/1066486/95141713-2d250880-0772-11eb-9ee8-bc07c11628d0.png" width="512"></p>
+
+## About Ragnarok Boilerplate
 
 The Ragnarok boilerplate is a quick starter template written in the DDD approach for all your project ideas. 
 The boilerplate contains the following features: 
