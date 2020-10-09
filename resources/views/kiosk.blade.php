@@ -3,16 +3,16 @@
         <div class="row">
             <div class="col-4">
                 <div class="text-center">
-                    <h3>Activity Logs</h3>
+                    <h3>{{ __('Activity Logs') }}</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm mb-0 table-hover">
                         <thead class="text-center">
                           <tr>
-                            <th scope="col">Log Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">User</th>
-                            <th>Created At</th>
+                            <th scope="col">{{ __('Log Name') }}</th>
+                            <th scope="col">{{ __('Description') }}</th>
+                            <th scope="col">{{ __('User') }}</th>
+                            <th>{{ __('Created At') }}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -30,7 +30,7 @@
                             @endforeach
                             <tr class="text-center">
                                 <td colspan="4">
-                                    <a href="{{ kioskRoute('activity.index') }}">See more</a>
+                                    <a href="{{ kioskRoute('activity.index') }}">{{ __('See more') }}</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -39,15 +39,15 @@
             </div>
             <div class="col-4">
                 <div class="text-center">
-                    <h3>Latest Created User</h3>
+                    <h3>{{ __('Latest Created User') }}</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm mb-0 table-hover">
                         <thead class="text-center">
                           <tr>
-                            <th scope="col">User Group</th>
-                            <th scope="col">E-Mail</th>
-                            <th>Name</th>
+                            <th scope="col">{{ __('User Group') }}</th>
+                            <th scope="col">{{ __('E-Mail') }}</th>
+                            <th>{{ __('Name') }}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -60,7 +60,7 @@
                             @endforeach
                             <tr class="text-center">
                                 <td colspan="3">
-                                    <a href="{{ kioskRoute('users.index') }}">See more</a>
+                                    <a href="{{ kioskRoute('users.index') }}">{{ __('See more') }}</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -69,15 +69,15 @@
             </div>
             <div class="col-4">
                 <div class="text-center">
-                    <h3>Latest Created Roles</h3>
+                    <h3>{{ __('Latest Created Roles') }}</h3>
                 </div>
                 <div class="table-repsonsive">
                     <table class="table table-sm mb-0 table-hover">
                         <thead class="text-center">
                           <tr>
-                            <th scope="col">Role Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Created By</th>
+                            <th scope="col">{{ __('Role Name') }}</th>
+                            <th scope="col">{{ __('Description') }}</th>
+                            <th scope="col">{{ __('Created By') }}</th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
@@ -96,7 +96,7 @@
                             @endforeach
                             <tr class="text-center">
                                 <td colspan="4">
-                                    <a href="{{ kioskRoute('roles.index') }}">See more</a>
+                                    <a href="{{ kioskRoute('roles.index') }}">{{ __('See more') }}</a>
                                 </td>
                             </tr>
                         </tbody>
