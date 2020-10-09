@@ -95,7 +95,7 @@
                             @foreach ($apiTokenPermissions as $apiTokenPermission)
                                 <div class="form-group col-6 mb-0">
                                     <div class="form-check">
-                                        <input class="form-check-input" name="permission[]" type="checkbox" value="{{ $apiTokenPermission->name }}" id="{{ $rolePermission->name }}">
+                                        <input class="form-check-input" name="permission[]" type="checkbox" value="{{ $apiTokenPermission->name }}" id="{{ $apiTokenPermission->name }}">
                                         <label class="form-check-label" for="{{ $apiTokenPermission->name }}">
                                             {{ $apiTokenPermission->description }}
                                         </label>

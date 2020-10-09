@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 
+use App\Domains\Activity\Models\Activity;
+use App\Domains\Users\Models\Role;
+use App\User;
+
 /**
  * Class KioskController
  *
@@ -18,6 +22,10 @@ class KioskController extends Controller
 
     public function __invoke(): Renderable
     {
-        return view('kiosk');
+        return view('kiosk', [
+            'activities' => Activity::orderBy('id', 'DESC')->limit(5)->get(),
+            'users' => User::orderBy('id', 'DESC')->limit(5)->get(),
+            'roles' => Role::orderBy('id', 'DESC')->limit(5)->get()
+        ]);
     }
 }
