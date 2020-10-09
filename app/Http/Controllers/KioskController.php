@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-
 use App\Domains\Activity\Models\Activity;
 use App\Domains\Users\Models\Role;
 use App\User;
+use Illuminate\Contracts\Support\Renderable;
 
 /**
  * Class KioskController
