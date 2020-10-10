@@ -21,8 +21,8 @@
                         </span>
 
                         <div>
-                            <h5 class="m-0">0 <small>{{ __('Users') }}</small></h5>
-                            <small class="text-muted">{{ __(':amount registered today.', ['amount' => 0]) }}</small>
+                            <h5 class="m-0">{{ $users['totalCount'] }} <small>{{ __('Users') }}</small></h5>
+                            <small class="text-muted">{{ __(':amount registered today.', ['amount' => $users['todayCount']]) }}</small>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                         </span>
 
                         <div>
-                            <h5 class="m-0">0 <small>{{ __('Activity logs') }}</small></h5>
-                            <small class="text-muted">{{ __(':amount activities logged today.', ['amount' => 0]) }}</small>
+                            <h5 class="m-0">{{ $activities['totalCount'] }} <small>{{ __('Activity logs') }}</small></h5>
+                            <small class="text-muted">{{ __(':amount activities logged today.', ['amount' => $activities['todayCount']]) }}</small>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                         </span>
 
                         <div>
-                            <h5 class="m-0">0 <small>{{ __('Personal access tokens') }}</small></h5>
-                            <small class="text-muted">{{ __(':amount personal access tokens issued today.', ['amount' => 0]) }}</small>
+                            <h5 class="m-0">{{ $tokens['countTotal'] }} <small>{{ __('Personal access tokens') }}</small></h5>
+                            <small class="text-muted">{{ __(':amount personal access tokens issued today.', ['amount' => $tokens['countToday']]) }}</small>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($users as $user)
+                                @forelse($users['users'] as $user)
                                     <tr>
                                         <td>
                                             <a href="mailto:{{ $user->email }}" class="text-decoration-none text-muted font-weight-bold">
@@ -190,7 +190,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($activities as $activity)
+                                @forelse($activities['logs'] as $activity)
                                     <tr>
                                         <td class="font-weight-bold text-muted">{{ $activity->log_name }}</td>
                                         <td class="font-weight-bold text-muted">{{ $activity->causer->name ?? __('Unknown user') }}</td>

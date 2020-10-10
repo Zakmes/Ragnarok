@@ -26,9 +26,9 @@ class KioskController extends Controller
     /**
      * KioskController constructor.
      *
-     * @param  ActivityService  $activityService
-     * @param  UserService      $userService
-     * @param  RoleService      $roleService
+     * @param  ActivityService  $activityService            The service layer for the activity log.
+     * @param  UserService      $userService                The service layer for the user management.
+     * @param  RoleService      $roleService                The service layer for the user permission roles.
      * @param  TokenService     $personalAccessTokenService The service layer for the personal access tokens. (API)
      * @return void
      */
@@ -54,9 +54,10 @@ class KioskController extends Controller
     public function __invoke(): Renderable
     {
         return view('kiosk', [
-            'activities' => Activity::orderBy('id', 'DESC')->limit(10)->get(),
-            'users' => User::orderBy('id', 'DESC')->limit(5)->get(),
-            'roles' => Role::orderBy('id', 'DESC')->limit(5)->get()
+            'activities' => $this->activityService->getDashBoardInfo(),
+            'users' => $this->userService->getDashboardInfo(),
+            'roles' => $this->roleService->orderBy('id', 'DESC')->limit(5)->get(),
+            'tokens' => $this->personalAccessTokenService->getDashBoardInfo(),
         ]);
     }
 }

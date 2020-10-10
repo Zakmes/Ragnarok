@@ -13,6 +13,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -147,6 +148,8 @@ class UserService extends BaseService
     /**
      * Method for registering new users in the application.
      *
+     * @todo Implement password reset when an admin has created an new user account.
+     *
      * @param  array        $userInformation The information array that is needed for registering the user.
      * @param  string|null  $role            The permission group that needs to be attached to the user.
      * @return User
@@ -163,5 +166,19 @@ class UserService extends BaseService
         event(new UserCreated($user));
 
         return $user;
+    }
+
+    /**
+     * Method for getting all the information that is needed for the kiosk dashboard.
+     *
+     * @return SupportCollection
+     */
+    public function getDashboardInfo(): SupportCollection
+    {
+        return collect([
+            'users' => $this->model->orderBy('id', 'DESC')->limit(5)->get(),
+            'todayCount' => $this->model->whereDate('created_at', now()->today())->count(),
+            'totalCount' => $this->count(),
+        ]);
     }
 }
