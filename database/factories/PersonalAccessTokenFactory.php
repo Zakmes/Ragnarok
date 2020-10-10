@@ -36,4 +36,16 @@ class PersonalAccessTokenFactory extends Factory
             'abilities' => "['*']",
         ];
     }
+
+    /**
+     * Indicate that the token is revoked.
+     *
+     * @return Factory
+     */
+    public function revoked(): Factory
+    {
+        return $this->state(function (array $attributes): array {
+           return ['deleted_at' => now()->subWeek()];
+        });
+    }
 }

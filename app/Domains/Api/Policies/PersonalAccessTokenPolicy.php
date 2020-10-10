@@ -48,7 +48,7 @@ class PersonalAccessTokenPolicy
     {
         return $user->is($accessToken->tokenable)
             || $user->hasPermissionTo('restore-tokens')
-            && $user->hasKioskUserGroup()
+            || $user->hasKioskUserGroup()
             && $accessToken->trashed();
     }
 }

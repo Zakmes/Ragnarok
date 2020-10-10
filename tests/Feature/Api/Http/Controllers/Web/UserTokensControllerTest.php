@@ -50,6 +50,21 @@ class UserTokensControllerTest extends TestCase
     }
 
     /** @test */
+    public function userCanViewTheRevokedTokensOverview(): void
+    {
+        $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
+
+        PersonalAccessToken::factory()->revoked()->count(6)->create();
+
+        $this->seedPermissions();
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'index', ['web', 'kiosk']);
+
+        $response = $this->actingAs($me)->get(kioskRoute('api-management.index', ['filter' => 'revoked']));
+        $response->assertSuccessful();
+        $response->assertViewIs('api.index');
+    }
+
+    /** @test */
     public function AuthenticatedUserCanOverviewHisPersonalAccessTokens(): void
     {
         $me = User::factory()->create();
