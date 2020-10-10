@@ -53,9 +53,9 @@ class UserTokensController extends Controller
     }
 
     /**
-     * Show the user api token screen.
+     * Show the user api token screen in their settings.
      *
-     * @param  Request $request
+     * @param  Request $request The request instance that contains all the request information.
      * @return Renderable
      */
     public function show(Request $request): Renderable
