@@ -45,7 +45,7 @@ class PersonalAccessTokenFactory extends Factory
     public function revoked(): Factory
     {
         return $this->state(function (array $attributes): array {
-           return ['deleted_at' => now()->subWeek()];
+            return ['deleted_at' => now()->subWeek()];
         });
     }
 }

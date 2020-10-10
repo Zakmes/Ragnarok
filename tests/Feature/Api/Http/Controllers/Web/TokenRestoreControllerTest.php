@@ -7,7 +7,6 @@ use App\Domains\Api\Models\PersonalAccessToken;
 use App\Domains\Roles\Models\Permission;
 use App\Domains\Users\Enums\GroupEnum;
 use App\User;
-use Database\Seeders\PermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
