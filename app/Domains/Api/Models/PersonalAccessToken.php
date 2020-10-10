@@ -49,5 +49,4 @@ class PersonalAccessToken extends PersonalAccessTokenLaravel
     {
         return PersonalAccessTokenFactory::new();
     }
-
 }
