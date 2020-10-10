@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Domains\Activity\Models\Activity;
 use App\Domains\Activity\Services\ActivityService;
 use App\Domains\Api\Services\TokenService;
-use App\Domains\Users\Models\Role;
 use App\Domains\Users\Services\RoleService;
 use App\Domains\Users\Services\UserService;
 use App\User;
