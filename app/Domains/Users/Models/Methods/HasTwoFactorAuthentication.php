@@ -34,6 +34,16 @@ trait HasTwoFactorAuthentication
     }
 
     /**
+     * Method for determining whether the user can setup 2FA.
+     *
+     * @return bool
+     */
+    public function canSetupTwoFactorAuthentication(): bool
+    {
+        return config('google2fa.enabled') && empty($this->twoFactorAuth);
+    }
+
+    /**
      * The data relation for the Two factor authentication.
      *
      * @return HasOne

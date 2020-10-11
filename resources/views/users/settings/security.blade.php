@@ -45,6 +45,10 @@
                         <button type="reset" class="btn btn-link border-0 text-decoration-none">{{ __('Reset') }}</button>
                     </div>
                 </form>
+
+                @if (auth()->user()->canSetupTwoFactorAuthentication())
+                    <x-setup-two-factor-authentication :url="route('home')"/>
+                @endif
             </div>
         </div>
     </div>
