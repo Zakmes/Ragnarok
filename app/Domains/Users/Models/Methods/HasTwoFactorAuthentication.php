@@ -3,7 +3,6 @@
 namespace App\Domains\Users\Models\Methods;
 
 use App\Domains\Users\Models\TwoFactorAuthentication;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
