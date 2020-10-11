@@ -27,6 +27,15 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('two_factor_authentications', function (Blueprint $table): void {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('google2FA_secret');
+            $table->json('google2Fa_recovery_tokens');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -36,6 +45,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('two_factor_authentications');
         Schema::dropIfExists('users');
     }
 }
