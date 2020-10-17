@@ -11168,6 +11168,10 @@ a.text-dark:focus {
   color: #5A67D8;
 }
 
+.card-two-factor {
+  background-color: #f3f4f5;
+}
+
 /*!
  * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *

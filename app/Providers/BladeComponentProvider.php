@@ -20,6 +20,8 @@ class BladeComponentProvider extends ServiceProvider
         Blade::component('users._sidenav', 'account-sidenav');
         Blade::component('users.settings._sidenav', 'profile-settings-nav');
         Blade::component('users.settings._setup-2fa', 'setup-two-factor-authentication');
+        Blade::component('users.settings._configure-2fa', 'configure-two-factor-authentication');
+        Blade::component('users.settings._configured-2fa', 'two-factor-authentication-configured');
 
         // API components
         Blade::component('api._token-modal', 'token-modal');

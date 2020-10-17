@@ -29,7 +29,7 @@
 
                             <div class="form-group col-6 mb-0">
                                 <label for="newPassword">{{ __('New password') }} <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control @error('password', 'is-invalid')" id="password" name="password">
+                                <input type="password" class="form-control @error('password', 'is-invalid')" id="newPassword" name="password">
                                 @error('password')
                             </div>
 
@@ -46,8 +46,13 @@
                     </div>
                 </form>
 
+                {{-- Refactor to includeWhen --}}
                 @if (auth()->user()->canSetupTwoFactorAuthentication())
-                    <x-setup-two-factor-authentication :url="route('home')"/>
+                    <x-setup-two-factor-authentication :url="route('generate2faSecret')"/>
+                @elseif (! auth()->user()->hasTwoFactorAuthEnabled())
+                    <x-configure-two-factor-authentication :url="route('enable2fa')" :qrCode="$qrCodeInline"/>
+                @elseif (auth()->user()->isUsingTwoFactorAuthentication())
+                    <x-two-factor-authentication-configured :url="route('disable2fa')"/>
                 @endif
             </div>
         </div>

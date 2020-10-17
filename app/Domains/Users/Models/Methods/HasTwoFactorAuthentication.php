@@ -20,7 +20,7 @@ trait HasTwoFactorAuthentication
      */
     public function hasTwoFactorAuthEnabled(): bool
     {
-        return config('google2fa.enabled') && $this->twoFactorAuth()->exists();
+        return config('google2fa.enabled') && $this->twoFactorAuth->google2fa_enable;
     }
 
     /**
@@ -51,5 +51,15 @@ trait HasTwoFactorAuthentication
     public function twoFactorAuth(): HasOne
     {
         return $this->hasOne(TwoFactorAuthentication::class);
+    }
+
+    /**
+     * Method for determining if the user is using the 2fa setup or not.
+     *
+     * @return bool
+     */
+    public function isUsingTwoFactorAuthentication(): bool
+    {
+        return config('google2fa.enabled') && $this->twoFactorAuth->google2fa_enable;
     }
 }

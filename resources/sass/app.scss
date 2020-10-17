@@ -16,6 +16,10 @@
 @import 'components/badges';
 @import 'components/navbar';
 
+.card-two-factor {
+    background-color: lighten(#6c757d, 50%);
+}
+
 /*!
  * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *

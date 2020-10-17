@@ -29,7 +29,8 @@
         "spatie/laravel-permission": "^3.16",
         "spatie/laravel-queueable-action": "^2.6",
         "spatie/laravel-schedule-monitor": "^1.0",
-        "watson/active": "^6.0"
+        "watson/active": "^6.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

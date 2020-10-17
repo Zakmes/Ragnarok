@@ -3,6 +3,7 @@
 namespace App\Domains\Users\Models;
 
 use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -35,5 +36,16 @@ class TwoFactorAuthentication extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Method for deleting the two factor setting in the application.
+     *
+     * @return bool
+     * @throws Exception
+     */
+    public function disable(): bool
+    {
+        return $this->delete();
     }
 }
