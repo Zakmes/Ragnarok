@@ -1,5 +1,5 @@
 # Ragnarok Boilerplate
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ffinancerewind.com%2Fentertainment%2Fragnarok-season-2-how-did-the-previous-season-end-ending-explained%2F&psig=AOvVaw3ud922uZbeg3RY9GgoOVOc&ust=1603000182179000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjZ15_3uuwCFQAAAAAdAAAAABAJ" alt="Ragnarok Image">
+<img src="https://image.shutterstock.com/image-vector/ragnarok-esport-mascot-logo-design-600w-1711462213.jpg" alt="Ragnarok Image">
 
 The Ragnarok boilerplate is a quick starter template written in the DDD approach for all your project ideas. 
 The boilerplate contains the following features: 
