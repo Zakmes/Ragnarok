@@ -23,7 +23,7 @@ Several things need to setup like creating the key, setup the environment databa
 
 Here is how to use this project step by step:
 - After you clone this repo, don't forget to do (Make sure you install composer first, refer [here](https://getcomposer.org)):
-```composer install``
+```composer install```
 - Setup your environment, copy the .env.example to .env, and filling those credential database.
 - After you do the install composer, do the following ```php artisan key:generate```
 - Then do migrate and seeding the database with ```php artisan migrate:refresh --seed```
