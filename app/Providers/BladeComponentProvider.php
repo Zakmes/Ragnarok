@@ -33,5 +33,6 @@ class BladeComponentProvider extends ServiceProvider
         Blade::component('layouts._kioskNavbar', 'kiosk-navbar');
         Blade::component('components.flashMessage', 'flash-session');
         Blade::component('layouts.app', 'app-layout');
+        Blade::component('layouts.auth', 'app-layout-auth');
     }
 }
