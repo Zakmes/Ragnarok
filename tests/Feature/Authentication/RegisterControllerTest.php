@@ -216,7 +216,7 @@ class RegisterControllerTest extends TestCase
         $this->assertGuest();
     }
 
-    /** &test */
+    /** @test */
     public function userCannotRegisterWithPasswordsNotMatching(): void
     {
         $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
