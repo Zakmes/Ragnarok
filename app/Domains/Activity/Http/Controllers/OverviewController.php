@@ -26,7 +26,7 @@ class OverviewController extends Controller
      */
     public function __construct(ActivityService $activityService)
     {
-        $this->middleware(['auth', 'kiosk', 'can:view,' . Activity::class]);
+        $this->middleware(['auth', 'kiosk', '2fa', 'can:view,' . Activity::class]);
         $this->activityService = $activityService;
     }
 

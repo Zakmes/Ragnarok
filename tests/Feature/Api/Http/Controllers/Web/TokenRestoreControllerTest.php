@@ -27,7 +27,7 @@ class TokenRestoreControllerTest extends TestCase
 
         Permission::create(['name' => 'restore-tokens', 'description' => 'The user can restore revoked personal access tokens', 'guard_name' => 'web']);
 
-        $this->assertActionUsesMiddleware(TokenRestoreController::class, '__invoke', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(TokenRestoreController::class, '__invoke', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('api-management.restore', ['trashedToken' => $token]));
         $response->assertRedirect(kioskRoute('api-management.index'));

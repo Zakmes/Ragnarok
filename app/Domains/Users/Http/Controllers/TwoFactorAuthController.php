@@ -29,7 +29,7 @@ class TwoFactorAuthController extends Controller
      */
     public function __construct(TwoFactorService $twoFactorAuthenticationService)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', '2fa']);
         $this->twoFactorAuthenticationService = $twoFactorAuthenticationService;
     }
 

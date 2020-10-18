@@ -24,7 +24,7 @@ class RecoveryTokensController extends Controller
      */
     public function __construct(TwoFactorService $twoFactorAuthenticationService)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', '2fa']);
         $this->twoFactorService = $twoFactorAuthenticationService;
     }
 

@@ -55,7 +55,7 @@ class LockControllerTest extends TestCase
     /** @test */
     public function canViewTheBlockedInformationErrorPage(): void
     {
-        $this->assertActionUsesMiddleware(LockController::class, 'index', 'auth');
+        $this->assertActionUsesMiddleware(LockController::class, 'index', ['auth', '2fa']);
         $user = $this->createBannedUser();
 
         $response = $this->actingAs($user->refresh())->get(kioskRoute('users.lock.error'));
@@ -69,7 +69,7 @@ class LockControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         $lena = User::factory()->create();
 
-        $this->assertActionUsesMiddleware(LockController::class, 'create', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(LockController::class, 'create', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('users.lock', $lena));
         $response->assertSuccessful();
@@ -82,7 +82,7 @@ class LockControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         $lena = User::factory()->create();
 
-        $this->assertActionUsesMiddleware(LockController::class, 'store', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(LockController::class, 'store', ['auth', 'kiosk', '2fa']);
         $this->assertActionUsesFormRequest(LockController::class, 'store', LockFormRequest::class);
 
         $response = $this->actingAs($me)->post(kioskRoute('users.lock', $lena), ['reason' => 'Deactivation reason.']);
@@ -102,7 +102,7 @@ class LockControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         $lena = User::factory()->create();
 
-        $this->assertActionUsesMiddleware(LockController::class, 'store', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(LockController::class, 'store', ['auth', 'kiosk', '2fa']);
         $this->assertActionUsesFormRequest(LockController::class, 'store', LockFormRequest::class);
 
         $response = $this->actingAs($me)->from(kioskRoute('users.lock', $lena))->post(kioskRoute('users.lock', $lena), []);
@@ -117,7 +117,7 @@ class LockControllerTest extends TestCase
         $lena = $this->createBannedUser();
 
         $this->seedPermissions();
-        $this->assertActionUsesMiddleware(LockController::class, 'destroy', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(LockController::class, 'destroy', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('users.unlock', $lena));
         $response->assertStatus(Response::HTTP_FOUND);

@@ -46,7 +46,7 @@ class UpdatePasswordControllerTest extends TestCase
         $me = User::factory()->create(['password' => $password = 'current-password', 'user_group' => GroupEnum::WEBMASTER])->givePermissionTo('change-password');
         $requestData = ['currentPassword' => $password, 'password' => 'new-password', 'password_confirmation' => 'new-password'];
 
-        $this->assertActionUsesMiddleware(UpdatePasswordController::class, '__invoke', 'auth');
+        $this->assertActionUsesMiddleware(UpdatePasswordController::class, '__invoke', ['auth', '2fa']);
         $this->assertActionUsesFormRequest(UpdatePasswordController::class, '__invoke', SecurityFormRequest::class);
 
         $this->actingAs($me)

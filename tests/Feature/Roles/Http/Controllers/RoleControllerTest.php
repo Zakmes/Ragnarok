@@ -27,7 +27,7 @@ class RoleControllerTest extends TestCase
         Role::factory()->count(4)->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'index', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'index', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('roles.index'));
         $response->assertSuccessful();
@@ -40,7 +40,7 @@ class RoleControllerTest extends TestCase
         Permission::factory()->count('5')->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'create', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'create', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('roles.create'));
         $response->assertSuccessful();
@@ -53,7 +53,7 @@ class RoleControllerTest extends TestCase
         $permissions = Permission::factory()->count(5)->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'store', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'store', ['auth', 'kiosk', '2fa']);
         $this->assertActionUsesFormRequest(RoleController::class, 'store', StoreFormRequest::class);
 
         $response = $this->actingAs($me)->post(kioskRoute('roles.store'), [
@@ -81,7 +81,7 @@ class RoleControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         $role = Role::factory()->create();
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'show', ['kiosk', 'web']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'show', ['kiosk', 'web', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('roles.show', $role));
         $response->assertSuccessful();
@@ -94,7 +94,7 @@ class RoleControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         $role = Role::factory()->create();
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'edit', ['kiosk', 'web']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'edit', ['kiosk', 'web', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('roles.edit', $role));
         $response->assertSuccessful();
@@ -113,7 +113,7 @@ class RoleControllerTest extends TestCase
         $this->assertTrue($role->hasPermissionTo($permissions[0]->name));
         $this->assertTrue($role->hasPermissionTo($permissions[1]->name));
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'update', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'update', ['auth', 'kiosk', '2fa']);
         $this->assertActionUsesFormRequest(RoleController::class, 'update', UpdateFormRequest::class);
 
         $response = $this->actingAs($me)->patch(kioskRoute('roles.update', $role), [
@@ -131,7 +131,7 @@ class RoleControllerTest extends TestCase
         $role = Role::factory()->create();
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
 
-        $this->assertActionUsesMiddleware(RoleController::class, 'destroy', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RoleController::class, 'destroy', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('roles.destroy', $role));
         $response->assertRedirect(kioskRoute('roles.index'));

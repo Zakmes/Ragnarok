@@ -31,7 +31,7 @@ class UserTokensController extends Controller
      */
     public function __construct(TokenService $tokenService)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', '2fa']);
         $this->middleware('kiosk')->except(['show', 'revoke', 'store']);
 
         $this->tokenService = $tokenService;
