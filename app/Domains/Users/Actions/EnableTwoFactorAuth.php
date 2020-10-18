@@ -2,7 +2,6 @@
 
 namespace App\Domains\Users\Actions;
 
-use App\Domains\Users\Services\TwoFactorService;
 use App\User;
 
 /**
