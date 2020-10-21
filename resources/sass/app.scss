@@ -16,10 +16,45 @@
 @import 'components/badges';
 @import 'components/navbar';
 
+<<<<<<< HEAD
 .card-two-factor {
     background-color: lighten(#6c757d, 50%);
 }
 
+=======
+.dashboard-link {
+    color: $tw-purple-600;
+}
+
+// Stamps
+
+// Stamp partial
+.stamp {
+    color: #fff;
+    background: #868e96;
+    display: inline-block;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 .25rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.stamp-md {
+    min-width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.stamp-bg-brand {
+    color: $tw-purple-600;
+    background-color: #C3DAFE;
+}
+
+
+>>>>>>> develop
 /*!
  * Datepicker for Bootstrap v1.9.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *

@@ -26,6 +26,17 @@ class Role extends SpatieRoleModel
     protected $guarded = [];
 
     /**
+     * Capitalize the role name.
+     *
+     * @param  string $roleName The name from the user permission role.
+     * @return string
+     */
+    public function getNameAttribute(string $roleName): string
+    {
+        return ucfirst($roleName);
+    }
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return Factory
