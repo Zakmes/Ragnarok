@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Activity\Http\Controllers;
 
+use App\Domains\Activity\Http\Controllers\OverviewController;
 use App\Domains\Activity\Models\Activity;
 use App\Domains\Roles\Listeners\RoleEventListener;
 use App\Domains\Users\Enums\GroupEnum;
@@ -23,6 +24,8 @@ class OverviewControllerTest extends TestCase
     {
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER]);
         Activity::factory()->times(10)->create();
+
+        $this->assertActionUsesMiddleware(OverviewController::class, '__invoke', ['auth', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('activity.index'));
         $response->assertSuccessful();

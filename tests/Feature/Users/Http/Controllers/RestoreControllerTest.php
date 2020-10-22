@@ -25,7 +25,7 @@ class RestoreControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::WEBMASTER])->givePermissionTo('restore-users');
         $lena = User::factory()->create(['deleted_at' => now()]);
 
-        $this->assertActionUsesMiddleware(RestoreController::class, '__invoke', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RestoreController::class, '__invoke', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('users.restore', $lena));
         $response->assertRedirect(kioskRoute('users.show', $lena));
@@ -44,7 +44,7 @@ class RestoreControllerTest extends TestCase
         $me = User::factory()->create(['user_group' => GroupEnum::USER]);
         $lena = User::factory()->create(['deleted_at' => now()]);
 
-        $this->assertActionUsesMiddleware(RestoreController::class, '__invoke', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(RestoreController::class, '__invoke', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->from(kioskRoute('users.index'))->get(kioskRoute('users.restore', $lena));
         $response->assertRedirect(kioskRoute('users.index'));

@@ -23,7 +23,7 @@ class TokenRestoreController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
     }
 
     /**

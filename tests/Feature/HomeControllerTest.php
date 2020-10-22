@@ -21,7 +21,7 @@ class HomeControllerTest extends TestCase
     {
         $me = User::factory()->make();
 
-        $this->assertActionUsesMiddleware(HomeController::class, 'index', 'auth');
+        $this->assertActionUsesMiddleware(HomeController::class, 'index', ['auth', '2fa']);
 
         $this->actingAs($me)
             ->get(route('home'))

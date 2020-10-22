@@ -42,7 +42,7 @@ class UserTokensControllerTest extends TestCase
         PersonalAccessToken::factory()->count(6)->create();
 
         $this->seedPermissions();
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'index', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'index', ['auth', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('api-management.index'));
         $response->assertSuccessful();
@@ -57,7 +57,7 @@ class UserTokensControllerTest extends TestCase
         PersonalAccessToken::factory()->revoked()->count(6)->create();
 
         $this->seedPermissions();
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'index', ['web', 'kiosk']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'index', ['web', 'kiosk', '2fa']);
 
         $response = $this->actingAs($me)->get(kioskRoute('api-management.index', ['filter' => 'revoked']));
         $response->assertSuccessful();
@@ -70,7 +70,7 @@ class UserTokensControllerTest extends TestCase
         $me = User::factory()->create();
         $me->createToken('test-token');
 
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'show', ['auth']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'show', ['auth', '2fa']);
 
         $response = $this->actingAs($me)->get(route('account.tokens'));
         $response->assertSuccessful();
@@ -84,7 +84,7 @@ class UserTokensControllerTest extends TestCase
         $token = $me->createToken('test-token');
 
         $this->seedPermissions();
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'revoke', ['auth']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'revoke', ['auth', '2fa']);
 
         $response = $this->actingAs($me)->get(route('account.tokens.revoke', $token->accessToken));
         $response->assertRedirect(url('/'));
@@ -104,7 +104,7 @@ class UserTokensControllerTest extends TestCase
         $token = $user->createToken('test-token');
 
         $this->seedPermissions();
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'revoke', ['auth']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'revoke', ['auth', '2fa']);
 
         $response = $this->actingAs($me)->get(route('account.tokens.revoke', $token->accessToken));
         $response->assertRedirect(url('/'));
@@ -120,7 +120,7 @@ class UserTokensControllerTest extends TestCase
     {
         $me = User::factory()->create();
 
-        $this->assertActionUsesMiddleware(UserTokensController::class, 'store', ['auth']);
+        $this->assertActionUsesMiddleware(UserTokensController::class, 'store', ['auth', '2fa']);
         $this->assertActionUsesFormRequest(UserTokensController::class, 'store', CreateFormRequest::class);
 
         $response = $this->actingAs($me)->post(route('account.tokens'), ['tokenName' => 'vame']);

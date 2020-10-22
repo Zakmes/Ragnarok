@@ -22,7 +22,7 @@ class KioskControllerTest extends TestCase
     {
         $me = User::factory()->make(['user_group' => GroupEnum::WEBMASTER]);
 
-        $this->assertActionUsesMiddleware(KioskController::class, '__invoke', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(KioskController::class, '__invoke', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($me)
             ->get(kioskRoute('dashboard'))

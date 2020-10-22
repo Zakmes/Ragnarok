@@ -4,6 +4,7 @@ namespace App;
 
 use App\Domains\Users\Models\Attributes\UserAttributes;
 use App\Domains\Users\Models\Methods\GeneralMethods;
+use App\Domains\Users\Models\Methods\HasTwoFactorAuthentication;
 use App\Domains\Users\Models\Methods\KioskMethods;
 use App\Domains\Users\Models\Scopes\UserGroupScopes;
 use App\Support\Modules\HasApiModuleChecks;
@@ -34,6 +35,7 @@ class User extends Authenticatable implements BannableContract
     use HasApiModuleChecks;
     use SoftDeletes;
     use HasFactory;
+    use HasTwoFactorAuthentication;
 
     /**
      * The attributes that are mass assignable.

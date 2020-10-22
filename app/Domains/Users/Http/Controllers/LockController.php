@@ -30,7 +30,7 @@ class LockController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'kiosk'])->except('index ');
+        $this->middleware(['auth', 'kiosk', '2fa'])->except('index ');
     }
 
     /**

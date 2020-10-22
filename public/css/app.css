@@ -11168,6 +11168,10 @@ a.text-dark:focus {
   color: #5A67D8;
 }
 
+.card-two-factor {
+  background-color: #f3f4f5;
+}
+
 .dashboard-link {
   color: #5a67d8;
 }

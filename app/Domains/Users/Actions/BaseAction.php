@@ -17,8 +17,11 @@ class BaseAction
     protected RoleService $roleService;
     protected AnnouncementService $announcementService;
 
-    public function __construct(UserService $userService, RoleService $roleService, AnnouncementService $announcementService)
-    {
+    public function __construct(
+        UserService $userService,
+        RoleService $roleService,
+        AnnouncementService $announcementService
+    ) {
         $this->userService = $userService;
         $this->roleService = $roleService;
         $this->announcementService = $announcementService;

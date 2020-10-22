@@ -35,7 +35,7 @@ class RoleController extends Controller
      */
     public function __construct(RoleService $roleService, PermissionService $permissionService)
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
         $this->authorizeResource(Role::class, 'role');
 
         $this->roleService = $roleService;
