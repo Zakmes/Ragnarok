@@ -3,8 +3,8 @@
 namespace App\Domains\Users\Http\Middleware;
 
 use App\Domains\Users\Services\AuthenticatorService;
-use Illuminate\Contracts\Auth\Guard;
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

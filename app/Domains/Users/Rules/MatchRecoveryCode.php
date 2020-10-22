@@ -2,8 +2,6 @@
 
 namespace App\Domains\Users\Rules;
 
-use App\Domains\Users\Models\TwoFactorAuthentication;
-use App\Domains\Users\Services\TwoFactorService;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
