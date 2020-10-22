@@ -19,7 +19,7 @@ class AuthenticatorService extends Authenticator
      */
     protected function canPassWithoutCheckingOTP(): bool
     {
-        if (empty($this->getUser()->twoFactorAuth)) {
+        if ($this->getUser()->twoFactorAuth === null) {
             return true;
         }
 

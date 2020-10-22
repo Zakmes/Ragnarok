@@ -103,4 +103,15 @@ class TwoFactorService
 
         return null;
     }
+
+    /**
+     * Method for disabling the 2FA configuration from the given user.
+     *
+     * @param  User $user The resource entity from the authenticated user.
+     * @return void
+     */
+    public function disableTwoFactorAuthentication(User $user): void
+    {
+        $user->twoFactorAuth()->delete();
+    }
 }

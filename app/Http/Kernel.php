@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         '2fa' => \App\Domains\Users\Http\Middleware\TwoFactorMiddleware::class,
+        '2fa-recovery' => \App\Domains\Users\Http\Middleware\TwoFactorRecoveryMiddleware::class,
     ];
 }

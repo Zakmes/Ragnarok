@@ -4,6 +4,7 @@ namespace App\Domains\Users\Http\Controllers;
 
 use App\Domains\Users\Services\TwoFactorService;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 

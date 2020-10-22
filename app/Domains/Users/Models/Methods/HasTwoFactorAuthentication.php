@@ -53,6 +53,19 @@ trait HasTwoFactorAuthentication
     }
 
     /**
+     * Determine whether the user has given an valid 2FA recovery code during the recovery request.
+     *
+     * @param  string $recoveryCode The 2FA recovery code given by the user.
+     * @return bool
+     */
+    public function recoveryCodeIsValid(string $recoveryCode): bool
+    {
+        $recoveryCodes = json_decode(decrypt($this->twoFactorAuth->google2fa_recovery_tokens), true);
+
+        return in_array($recoveryCode, $recoveryCodes, true);
+    }
+
+    /**
      * Method for determining if the user is using the 2fa setup or not.
      *
      * @return bool

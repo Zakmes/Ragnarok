@@ -6,6 +6,7 @@ use App\Domains\Users\Http\Controllers\RecoveryTokensController;
 use App\Domains\Users\Http\Controllers\Settings\UpdateInformationController;
 use App\Domains\Users\Http\Controllers\Settings\UpdatePasswordController;
 use App\Domains\Users\Http\Controllers\TwoFactorAuthController;
+use App\Domains\Users\Http\Controllers\TwoFactorRecoveryController;
 use App\Http\Controllers\HomeController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,9 @@ if (config('google2fa.enabled')) {
     Route::post('/account-2fa-generate', [TwoFactorAuthController::class, 'generate2faSecret'])->name('generate2faSecret');
     Route::post('/account-2fa', [TwoFactorAuthController::class, 'enable2fa'])->name('enable2fa');
     Route::delete('/account-2fa-deactivate', [TwoFactorAuthController::class, 'disable2fa'])->name('disable2fa');
-    Route::post('/2faVerify', static function () {
-        return redirect()->url(RouteServiceProvider::HOME);
-    })->name('2faVerify')->middleware('2fa');
+
+    Route::group(['prefix' => '/2fa'], static function () {
+        Route::get('/recovery', [TwoFactorRecoveryController::class, 'index'])->name('2fa.recovery');
+        Route::post('/recovery', [TwoFactorRecoveryController::class, 'update'])->name('2fa.recovery.challenge');
+    });
 }
