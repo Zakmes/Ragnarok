@@ -37,7 +37,7 @@ class KioskController extends Controller
         RoleService $roleService,
         TokenService $personalAccessTokenService
     ) {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
 
         $this->activityService = $activityService;
         $this->userService = $userService;
