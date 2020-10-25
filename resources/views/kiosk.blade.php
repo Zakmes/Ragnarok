@@ -108,7 +108,7 @@
             <div class="col-md-12 col-lg-6 col-sm-12">
                 <div class="card h-100 card-body border-0 shadow-sm">
                     <h6 class="border-bottom border-gray pb-1 mb-3">
-                        {{ __('Recent created permission roles') }}
+                        {{ __('Recent created user accounts.') }}
 
                         <a href="{{ kioskRoute('roles.index') }}" class="small text-decoration-none dashboard-link float-right">
                             <x:heroicon-o-menu class="icon mr-1"/> {{ __('See more') }}
