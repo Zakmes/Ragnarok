@@ -27,15 +27,15 @@ class MacroServiceProvider extends ServiceProvider
                     $query->when(
                         str_contains($attribute, '.'),
                         function (Builder $query) use ($attribute, $searchTerm) {
-                        [$relationName, $relationAttribute] = explode('.', $attribute);
+                            [$relationName, $relationAttribute] = explode('.', $attribute);
 
-                        $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerm) {
-                            $query->where($relationAttribute, 'LIKE', "%{$searchTerm}%");
-                        });
-                    },
+                            $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchTerm) {
+                                $query->where($relationAttribute, 'LIKE', "%{$searchTerm}%");
+                            });
+                        },
                         function (Builder $query) use ($attribute, $searchTerm) {
-                        $query->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
-                    }
+                            $query->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
+                        }
                     );
                 }
             });
