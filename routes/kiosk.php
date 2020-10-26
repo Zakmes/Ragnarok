@@ -17,6 +17,7 @@ use App\Domains\Announcements\Http\Controllers\StatusController;
 use App\Domains\Api\Http\Controllers\Web\TokenRestoreController;
 use App\Domains\Api\Http\Controllers\Web\UserTokensController;
 use App\Domains\Roles\Http\Controllers\RoleController;
+use App\Domains\Roles\Http\Controllers\RoleSearchController;
 use App\Domains\Users\Http\Controllers\LockController;
 use App\Domains\Users\Http\Controllers\RestoreController;
 use App\Domains\Users\Http\Controllers\SearchController as SearchControllerAlias;
@@ -45,6 +46,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
     Route::get('/user/{userEntity}/unlock', [LockController::class, 'destroy'])->name('users.unlock');
 
     // Role management routes
+    Route::get('/roles-search', RoleSearchController::class)->name('roles.search');
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::post('/roles/create', [RoleController::class, 'store'])->name('roles.store');
