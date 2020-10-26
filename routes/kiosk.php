@@ -19,6 +19,7 @@ use App\Domains\Api\Http\Controllers\Web\UserTokensController;
 use App\Domains\Roles\Http\Controllers\RoleController;
 use App\Domains\Users\Http\Controllers\LockController;
 use App\Domains\Users\Http\Controllers\RestoreController;
+use App\Domains\Users\Http\Controllers\SearchController as SearchControllerAlias;
 use App\Domains\Users\Http\Controllers\UsersController;
 use App\Http\Controllers\KioskController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
     Route::get('/dashboard', KioskController::class)->name('dashboard');
 
     // User management routes
+    Route::get('/users/search', SearchControllerAlias::class)->name('users.search');
     Route::post('/user-create', [UsersController::class, 'store'])->name('users.store');
     Route::get('/user-create', [UsersController::class, 'create'])->name('users.create');
     Route::get('/users/{filter?}', [UsersController::class, 'index'])->name('users.index');
