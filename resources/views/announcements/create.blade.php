@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h5>General settings &amp; time window</h5>
+                        <h5>{{ __('General settings &amp; time window') }}</h5>
                     </div>
 
                     <div class="offset-1 col-7">
@@ -41,8 +41,8 @@
                                 <label for="status">{{ __('Status') }}</label>
 
                                 <select class="custom-select @error('status', 'is-invalid')" @input('status') id="status">
-                                    <option value="true" @if (old('status') === true) selected @endif>Enabled</option>
-                                    <option value="fakse">Disabled @if(old('status') === false) selected @endif</option>
+                                    <option value="true" @if (old('status') === true) selected @endif>{{ __('Enabled') }}</option>
+                                    <option value="false">{{ __('Disabled') }} @if(old('status') === false) selected @endif</option>
                                 </select>
 
                                 @error('status')
@@ -54,7 +54,7 @@
                                 <select id="visibility" class="custom-select @error('visibility', 'is-invalid')" @input('visibility')>
                                     @foreach ($areas as $value => $area)
                                         <option value="{{ $area }}" @if ($area === old('area')) selected @endif)>
-                                            {{ ucfirst($area ?? 'Global') }}
+                                            {{ ucfirst($area ?? __('Global')) }}
                                         </option>
                                     @endforeach
                                 </select>

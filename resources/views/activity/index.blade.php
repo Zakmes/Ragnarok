@@ -56,7 +56,7 @@
                             @empty
                                 <td class="text-muted" colspan="4">
                                     <x:heroicon-o-information-circle class="icon mr-1"/>
-                                    {{ __('Currently there are no loggied activities in the application.') }}
+                                    {{ __('Currently there are no logged activities in the application.') }}
                                 </td>
                             @endforelse
                         </tbody>
