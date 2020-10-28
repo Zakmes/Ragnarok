@@ -38,6 +38,7 @@ class EnableTwoFactorAuth extends BaseAction
      */
     private function TwofactorKeyIsVerfied(User $user, string $verificationCode): bool
     {
-        return app('pragmarx.google2fa')->verifyKey($user->twoFactorAuth->google2fa_secret, $verificationCode);
+        return app('pragmarx.google2fa')
+            ->verifyKey($user->twoFactorAuth->google2fa_secret, $verificationCode);
     }
 }

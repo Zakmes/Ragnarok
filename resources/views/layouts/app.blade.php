@@ -116,19 +116,19 @@
 
                 <div class="float-right">
                     <a class="text-decoration-none footer-link" id="toTop" href="#">
-                        <i class="fe font-weight-bold fe-chevrons-up icon-pl-1"></i> Naar boven
+                        <i class="fe font-weight-bold fe-chevrons-up icon-pl-1"></i> {{ __('to top') }}
                     </a>
 
                     <span class="dot align-middle"></span>
 
                     <a href="" target="_blank" class="footer-link text-decoration-none">
-                        Privacy
+                        {{ __('Privacy') }}
                     </a>
 
                     <span class="dot align-middle"></span>
 
                     <a href="" target="_blank" class="footer-link text-decoration-none">
-                        Terms
+                        {{ __('Terms') }}
                     </a>
                 </div>
             </div>
