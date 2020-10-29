@@ -4,6 +4,7 @@ namespace App\Domains\Users\Listeners;
 
 use App\Domains\Users\Events\UserCreated;
 use App\Domains\Users\Events\UserDeleted;
+use App\Domains\Users\Events\UserImpersonated;
 use App\Domains\Users\Events\UserRestored;
 use App\Domains\Users\Events\UserStatusChanged;
 use App\Domains\Users\Events\UserUpdated;
@@ -36,6 +37,7 @@ class UserEventListener
         $events->listen(UserUpdated::class, [UserEventListener::class, 'onUpdated']);
         $events->listen(UserRestored::class, [UserEventListener::class, 'onRestored']);
         $events->listen(UserStatusChanged::class, [UserEventListener::class, 'onStatusChange']);
+        $events->listen(UserImpersonated::class, [UserEventListener::class, 'onImpersonated']);
     }
 
     /**
@@ -95,6 +97,21 @@ class UserEventListener
             ->withProperties(['roles' => $event->user->roles->count() ? $event->user->roles->pluck('name')->implode(', ') : 'None'])
             ->log(__('Update the account from :user in the :userGroup group with the following roles: :properties.roles', [
                 'user' => $event->user->name, 'userGroup' => $event->user->user_group
+            ]));
+    }
+
+    /**
+     * The event listener for the event that gets fired when a user is impersonated in the application.
+     *
+     * @param  UserImpersonated $event The event that gets fired when during the impersonation process.
+     * @return void
+     */
+    public function onImpersonated(UserImpersonated $event): void
+    {
+        activity(self::LogName)
+            ->performedOn($event->user)
+            ->log(__(':impersonator is starting with an impersonation session for the user :user', [
+                'impersonator' => $event->user->name, 'user' => auth()->user()->name
             ]));
     }
 

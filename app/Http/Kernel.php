@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         '2fa' => \App\Domains\Users\Http\Middleware\TwoFactorMiddleware::class,
         '2fa-recovery' => \App\Domains\Users\Http\Middleware\TwoFactorRecoveryMiddleware::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
     ];
 }

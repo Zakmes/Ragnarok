@@ -21,6 +21,7 @@ use App\Domains\Api\Http\Controllers\Web\TokenRestoreController;
 use App\Domains\Api\Http\Controllers\Web\UserTokensController;
 use App\Domains\Roles\Http\Controllers\RoleController;
 use App\Domains\Roles\Http\Controllers\RoleSearchController;
+use App\Domains\Users\Http\Controllers\ImpersonateController;
 use App\Domains\Users\Http\Controllers\LockController;
 use App\Domains\Users\Http\Controllers\RestoreController;
 use App\Domains\Users\Http\Controllers\SearchController as SearchControllerAlias;
@@ -33,6 +34,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
 
     // User management routes
     Route::get('/users/search', SearchControllerAlias::class)->name('users.search');
+    Route::get('/users/impersonate/{user}', [ImpersonateController::class, 'take'])->name('users.impersonate');
     Route::post('/user-create', [UsersController::class, 'store'])->name('users.store');
     Route::get('/user-create', [UsersController::class, 'create'])->name('users.create');
     Route::get('/users/{filter?}', [UsersController::class, 'index'])->name('users.index');

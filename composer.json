@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "ext-json": "*",
         "actb/laravel-form-helpers": "^1.6",
         "actb/laravel-validation-rules": "^1.2",
         "blade-ui-kit/blade-heroicons": "^0.2.1",
@@ -16,6 +17,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
@@ -29,8 +31,7 @@
         "spatie/laravel-permission": "^3.16",
         "spatie/laravel-queueable-action": "^2.6",
         "spatie/laravel-schedule-monitor": "^1.0",
-        "watson/active": "^6.0",
-        "ext-json": "*"
+        "watson/active": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
