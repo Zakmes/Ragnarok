@@ -19,7 +19,7 @@ The boilerplate contains the following features:
 
 ## Synchronization 
 
-Currently the Ragnarok boilerplate is synchronized with the Laravel 8.0.3 starter template. 
+Currently the Ragnarok boilerplate is synchronized with the Laravel 8.2.0 starter template. 
 
 ## How To Use
 
