@@ -20,6 +20,16 @@ trait KioskMethods
     }
 
     /**
+     * Method for determining is the user is on the application.
+     *
+     * @return bool
+     */
+    public function isOnApplication(): bool
+    {
+        return ! $this->isOnKiosk();
+    }
+
+    /**
      * Determine if the authenticated user is currently on the kiosk section.
      *
      * @return bool
