@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BladeComponentProvider::class,
         App\Providers\HelperServiceProvider::class,
+        App\Providers\MacroServiceProvider::class,
         App\Domains\Announcements\Providers\AnnouncementServiceProvider::class,
     ],
 

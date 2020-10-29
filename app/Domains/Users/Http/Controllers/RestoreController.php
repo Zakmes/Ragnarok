@@ -5,6 +5,7 @@ namespace App\Domains\Users\Http\Controllers;
 use App\Domains\Users\Actions\DeleteAction;
 use App\Domains\Users\Enums\DeleteType;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\RedirectResponse;
 use function kioskRoute;
 
@@ -22,7 +23,7 @@ class RestoreController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
     }
 
     /**
@@ -36,10 +37,11 @@ class RestoreController extends Controller
      */
     public function __invoke(int $user, DeleteAction $userDeleteAction): RedirectResponse
     {
+        $user = User::withTrashed()->find($user);
         $this->authorize('restore', $user);
 
-        $user = $userDeleteAction->execute($user, DeleteType::RESTORE);
-        flash()->success(__("The user account from {$user->name} is successfully restored"));
+        $userDeleteAction->execute($user->id, DeleteType::RESTORE);
+        flash()->success(__("The user account from :user is successfully restored", ['user' => $user->name]));
 
         return redirect(kioskRoute('users.show', $user));
     }

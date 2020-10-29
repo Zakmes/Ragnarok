@@ -53,6 +53,7 @@ return [
      */
 
     'modules' => [
+        '2fa' => true,
         'api-tokens' => true,
         'announcements' => true,
     ],

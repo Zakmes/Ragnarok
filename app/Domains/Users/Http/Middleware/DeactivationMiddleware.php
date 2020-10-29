@@ -47,8 +47,6 @@ class DeactivationMiddleware
         $user = $this->auth->user();
 
         if ($this->auth->check() && $this->isBanned($user)) {
-            session()->flash('email', $request->user()->email);
-
             if ($this->requestIsErrorPage($request) || $this->requestIsLogoutRoute($request)) {
                 return $next($request);
             }

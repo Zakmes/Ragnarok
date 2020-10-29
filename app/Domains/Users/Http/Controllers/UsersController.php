@@ -38,7 +38,7 @@ class UsersController extends Controller
      */
     public function __construct(UserService $userService, RoleService $roleService)
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
         $this->authorizeResource(User::class, 'user');
 
         $this->userService = $userService;
@@ -149,7 +149,7 @@ class UsersController extends Controller
         }
 
         $userDeleteAction->execute($user, DeleteType::MARK);
-        flash()->success(__("The user account from {$user->name} is successfully marked for deletion."));
+        flash()->success(__("The user account from :user is successfully marked for deletion.", ['user' => $user->name]));
 
         return redirect(kioskRoute('users.index', ['filter' => 'deleted']));
     }

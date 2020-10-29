@@ -25,8 +25,8 @@
                     </div>
                 </div>
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search logged activity ') }}">
+                <form action="{{ kioskRoute('activity.search') }}" method="GET" class="form-inline">
+                    <input type="text" class="form-control form-search border-0 shadow-sm" name="term" value="{{ request('term') }}" placeholder="{{ __('Search logged activity ') }}">
                 </form>
             </div>
         </div>
@@ -56,7 +56,7 @@
                             @empty
                                 <td class="text-muted" colspan="4">
                                     <x:heroicon-o-information-circle class="icon mr-1"/>
-                                    {{ __('Currently there are no loggied activities in the application.') }}
+                                    {{ __('Currently there are no logged activities in the application.') }}
                                 </td>
                             @endforelse
                         </tbody>

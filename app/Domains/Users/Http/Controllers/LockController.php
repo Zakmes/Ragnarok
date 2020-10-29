@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use function kioskRoute;
 
@@ -29,7 +30,7 @@ class LockController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'kiosk'])->except('index ');
+        $this->middleware(['auth', 'kiosk', '2fa'])->except('index ');
     }
 
     /**
@@ -38,13 +39,11 @@ class LockController extends Controller
      * @param  UserService $userService The business logic layer that is related to the users in the application.
      * @return Renderable
      */
-    public function index(UserService $userService): Renderable
+    public function index(Request $request, UserService $userService): Renderable
     {
-        $user = $userService->getByColumn(session()->get('email'), 'email');
+        abort_if($request->user()->isNotBanned(), Response::HTTP_NOT_FOUND);
 
-        abort_if($user->isNotBanned(), Response::HTTP_NOT_FOUND);
-
-        return view('errors.deactivated')->withUser($user)->withBanInformation($user->latestBan());
+        return view('errors.deactivated')->withUser($request->user())->withBanInformation($request->user()->latestBan());
     }
 
     /**

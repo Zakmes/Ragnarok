@@ -3,8 +3,6 @@
 namespace App\Domains\Users\Http\Requests;
 
 use App\Domains\Users\Enums\GroupEnum;
-use App\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

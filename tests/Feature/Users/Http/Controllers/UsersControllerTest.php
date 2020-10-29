@@ -65,7 +65,7 @@ class UsersControllerTest extends TestCase
         $me = User::factory()->make(['user_group' => GroupEnum::WEBMASTER]);
 
         $this->permissionsSeed();
-        $this->assertActionUsesMiddleware(UsersController::class, 'index', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'index', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($me)
             ->get(kioskRoute('users.index'))
@@ -87,7 +87,7 @@ class UsersControllerTest extends TestCase
         $lena = User::factory()->make(['user_group' => GroupEnum::WEBMASTER]);
 
         $this->permissionsSeed();
-        $this->assertActionUsesMiddleware(UsersController::class, 'show', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'show', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($lena)
             ->get(kioskRoute('users.show', $jani))
@@ -101,7 +101,7 @@ class UsersControllerTest extends TestCase
         $me = User::factory()->make(['user_group' => GroupEnum::WEBMASTER]);
 
         $this->permissionsSeed();
-        $this->assertActionUsesMiddleware(UsersController::class, 'create', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'create', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($me)
             ->get(kioskRoute('users.create'))
@@ -116,7 +116,7 @@ class UsersControllerTest extends TestCase
         $lena = User::factory()->create();
 
         $this->permissionsSeed();
-        $this->assertActionUsesMiddleware(UsersController::class, 'edit', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'edit', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($me)
             ->get(kioskRoute('users.update', $lena))
@@ -131,7 +131,7 @@ class UsersControllerTest extends TestCase
         $lena = User::factory()->create();
 
         $this->permissionsSeed();
-        $this->assertActionUsesMiddleware(UsersController::class, 'destroy', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'destroy', ['auth', 'kiosk', '2fa']);
 
         // Test the confirmation view
         $this->actingAs($me)
@@ -158,7 +158,7 @@ class UsersControllerTest extends TestCase
 
         $this->permissionsSeed();
         $this->assertActionUsesFormRequest(UsersController::class, 'update', UpdateFormRequest::class);
-        $this->assertActionUsesMiddleware(UsersController::class, 'update', ['kiosk', 'auth']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'update', ['kiosk', 'auth', '2fa']);
 
         $this->actingAs($me)
             ->patch(kioskRoute('users.update', $lotte), $this->requestData())
@@ -178,7 +178,7 @@ class UsersControllerTest extends TestCase
 
         $this->permissionsSeed();
         $this->assertActionUsesFormRequest(UsersController::class, 'store', InformationFormRequest::class);
-        $this->assertActionUsesMiddleware(UsersController::class, 'store', ['auth', 'kiosk']);
+        $this->assertActionUsesMiddleware(UsersController::class, 'store', ['auth', 'kiosk', '2fa']);
 
         $this->actingAs($me)
             ->post(kioskRoute('users.store'), $requestData)

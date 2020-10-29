@@ -17,8 +17,6 @@ use Illuminate\Http\RedirectResponse;
 /**
  * Class ManagementController
  *
- * @todo Implement store method
- *
  * @package App\Domains\Announcements\Http\Controllers
  */
 class ManagementController extends Controller
@@ -33,7 +31,7 @@ class ManagementController extends Controller
      */
     public function __construct(AnnouncementService $announcementService)
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
         $this->authorizeResource(Announcement::class, 'announcement');
 
         $this->announcementService = $announcementService;

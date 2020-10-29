@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Users\Http\Controllers\Settingd;
+namespace Tests\Feature\Users\Http\Controllers\Settings;
 
 use App\Domains\Users\Http\Controllers\Settings\UpdateInformationController;
 use App\Domains\Users\Http\Requests\InformationFormRequest;
@@ -44,7 +44,7 @@ class UpdateInformationControllerTest extends TestCase
         $me = User::factory()->make();
         $requestData = ['firstName' => $this->faker->firstName, 'lastName' => $this->faker->lastName, 'email' => $this->faker->safeEmail];
 
-        $this->assertActionUsesMiddleware(UpdateInformationController::class, '__invoke', ['auth']);
+        $this->assertActionUsesMiddleware(UpdateInformationController::class, '__invoke', ['auth', '2fa']);
         $this->assertActionUsesFormRequest(UpdateInformationController::class, '__invoke', InformationFormRequest::class);
 
         $this->actingAs($me)

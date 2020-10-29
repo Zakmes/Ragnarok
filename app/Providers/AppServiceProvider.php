@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Api\Models\PersonalAccessToken;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Spatie\Flash\Flash;
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        Paginator::useBootstrap();
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
         Flash::levels(['success' => 'alert-success', 'warning' => 'alert-warning', 'error' => 'alert-danger']);

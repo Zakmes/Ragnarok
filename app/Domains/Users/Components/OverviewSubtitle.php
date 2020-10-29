@@ -38,7 +38,7 @@ class OverviewSubtitle extends Component
             case GroupEnum::DEVELOPER: return __('overview from all the users in the developer user group');
             case GroupEnum::WEBMASTER: return __('overview from all the users in the webmaster user group.');
             case 'deleted':            return __('Overview from all the users that are marked for deletion');
-            default:                   return __("overview from all the users currently in {$applicationName}");
+            default:                   return __("overview from all the users currently in :application", ['application' => $applicationName]);
         }
     }
 }

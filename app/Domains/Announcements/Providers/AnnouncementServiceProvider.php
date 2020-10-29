@@ -41,7 +41,7 @@ class AnnouncementServiceProvider extends ServiceProvider
                     : $view->with('announcements', $announcementService->getForFrontend());
             });
 
-            View::composer('layouts.app', static function ($view) use ($announcementService): void {
+            View::composer(['layouts.app', 'layouts.auth'], static function ($view) use ($announcementService): void {
                 $view->with('announcementsUnread', $announcementService->getUnreadCount());
             });
         }

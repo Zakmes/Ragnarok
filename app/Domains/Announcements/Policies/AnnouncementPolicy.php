@@ -21,9 +21,7 @@ class AnnouncementPolicy
      */
     public function viewAny(User $user): bool
     {
-        return config('spoon.modules.announcements')
-            && $user->canAccessKiosk()
-            && $user->hasAnyRole([GroupEnum::WEBMASTER, GroupEnum::DEVELOPER]);
+        return config('spoon.modules.announcements') && $user->hasKioskUserGroup();
     }
 
     /**
@@ -36,8 +34,7 @@ class AnnouncementPolicy
     public function view(User $user, Announcement $announcement): bool
     {
         return config('spoon.modules.announcements')
-            && $user->canAccessKiosk()
-            && $user->hasAnyRole([GroupEnum::WEBMASTER, GroupEnum::DEVELOPER])
+            && $user->hasKioskUserGroup()
             || $user->is($announcement->creator);
     }
 
@@ -65,7 +62,7 @@ class AnnouncementPolicy
     {
         return config('spoon.modules.announcements')
             && $user->canAccessKiosk()
-            && $user->hasRole(GroupEnum::WEBMASTER)
+            && $user->user_group === GroupEnum::WEBMASTER
             || $user->is($announcement->creator);
     }
 
@@ -80,7 +77,7 @@ class AnnouncementPolicy
     {
         return config('spoon.modules.announcements')
             && $user->canAccessKiosk()
-            && $user->hasRole(GroupEnum::WEBMASTER)
+            && $user->user_group === GroupEnum::WEBMASTER
             || $user->is($announcement->creator);
     }
 
@@ -95,7 +92,7 @@ class AnnouncementPolicy
     {
         return config('spoon.modules.announcements')
             && $user->canAccessKiosk()
-            && $user->hasRole(GroupEnum::WEBMASTER)
+            && $user->user_group === GroupEnum::WEBMASTER
             || $user->is($announcement->creator);
     }
 }
