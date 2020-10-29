@@ -16,6 +16,7 @@ use App\Domains\Activity\Http\Controllers\SearchController;
 use App\Domains\Announcements\Http\Controllers\ManagementController;
 use App\Domains\Announcements\Http\Controllers\SearchAnnouncementController;
 use App\Domains\Announcements\Http\Controllers\StatusController;
+use App\Domains\Api\Http\Controllers\Web\SearchController as TokenSearchController;
 use App\Domains\Api\Http\Controllers\Web\TokenRestoreController;
 use App\Domains\Api\Http\Controllers\Web\UserTokensController;
 use App\Domains\Roles\Http\Controllers\RoleController;
@@ -63,6 +64,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
 
     // API personal access tokens routes
     if (config('spoon.modules.api-tokens')) {
+        Route::get('/api-management/search', TokenSearchController::class)->name('api-management.search');
         Route::get('/api-management/{filter?}', [UserTokensController::class, 'index'])->name('api-management.index');
         Route::get('/api-token/{trashedToken}/restore', TokenRestoreController::class)->name('api-management.restore');
     }

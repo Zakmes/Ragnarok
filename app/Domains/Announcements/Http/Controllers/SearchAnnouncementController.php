@@ -37,8 +37,8 @@ class SearchAnnouncementController extends Controller
     {
         $this->authorize('view', $announcements);
 
-        return view('announcements.index', [
-            'announcements' => $announcements->search(['title', 'message', 'starts_at', 'ends_at'], $request->term)
+        return view('announcements.overview', [
+            'announcements' => $announcements->search(['title', 'message'], $request->term)
         ]);
     }
 }

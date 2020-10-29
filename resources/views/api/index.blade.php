@@ -21,8 +21,8 @@
                     </div>
                 </div>
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="Search api token">
+                <form method="GET" action="{{ kioskRoute('api-management.search') }}" class="form-inline">
+                    <input type="text" class="form-control form-search border-0 shadow-sm" value="{{ request('term') }}" name="term" placeholder="Search api token">
                 </form>
             </div>
         </div>
