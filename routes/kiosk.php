@@ -12,6 +12,7 @@
 */
 
 use App\Domains\Activity\Http\Controllers\OverviewController;
+use App\Domains\Activity\Http\Controllers\SearchController;
 use App\Domains\Announcements\Http\Controllers\ManagementController;
 use App\Domains\Announcements\Http\Controllers\StatusController;
 use App\Domains\Api\Http\Controllers\Web\TokenRestoreController;
@@ -56,6 +57,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
     Route::get('/roles/{role}/remove', [RoleController::class, 'destroy'])->name('roles.destroy');
 
     // Activity logs routes
+    Route::get('/logs-search', SearchController::class)->name('activity.search');
     Route::get('/logs/{filter?}', OverviewController::class)->name('activity.index');
 
     // API personal access tokens routes

@@ -25,8 +25,8 @@
                     </div>
                 </div>
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search logged activity ') }}">
+                <form action="{{ kioskRoute('activity.search') }}" method="GET" class="form-inline">
+                    <input type="text" class="form-control form-search border-0 shadow-sm" name="term" value="{{ request('term') }}" placeholder="{{ __('Search logged activity ') }}">
                 </form>
             </div>
         </div>
