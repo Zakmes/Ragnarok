@@ -34,6 +34,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
 
     // User management routes
     Route::get('/users/search', SearchControllerAlias::class)->name('users.search');
+    Route::get('/users/stop-impersonate', [ImpersonateController::class, 'leave'])->name('users.impersonate.leave');
     Route::get('/users/impersonate/{user}', [ImpersonateController::class, 'take'])->name('users.impersonate');
     Route::post('/user-create', [UsersController::class, 'store'])->name('users.store');
     Route::get('/user-create', [UsersController::class, 'create'])->name('users.create');

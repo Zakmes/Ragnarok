@@ -48,6 +48,14 @@
                             </li>
                         @endif
                     @else
+                        @can('leave-impersonation', auth()->user())
+                            <li class="nav-item">
+                                <a href="{{ kioskRoute('users.impersonate.leave') }}" class="nav-link text-danger">
+                                    <x-heroicon-o-logout class="icon mr-2"/> {{ __('Leave impersonation') }}
+                                </a>
+                            </li>
+                        @endcan
+
                         @if (Auth::user()->canAccessKiosk())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ kioskRoute('dashboard') }}">

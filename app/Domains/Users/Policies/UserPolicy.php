@@ -128,4 +128,20 @@ class UserPolicy
             && ! $impersonateManager->isImpersonating()
             && $user->canImpersonate();
     }
+
+    /**
+     * Method for determining if an impersonating session can be stopped.
+     * 
+     * @param   User $user The resource entity from the authenticator user.
+     * @return  bool
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function leaveImpersonation(User $user): bool
+    {
+        $impersonateManager = app()->make(ImpersonateManager::class);
+
+        return $user->user_group && GroupEnum::WEBMASTER
+            && $impersonateManager->isImpersonating();
+    }
 }
