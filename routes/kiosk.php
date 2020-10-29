@@ -14,6 +14,7 @@
 use App\Domains\Activity\Http\Controllers\OverviewController;
 use App\Domains\Activity\Http\Controllers\SearchController;
 use App\Domains\Announcements\Http\Controllers\ManagementController;
+use App\Domains\Announcements\Http\Controllers\SearchAnnouncementController;
 use App\Domains\Announcements\Http\Controllers\StatusController;
 use App\Domains\Api\Http\Controllers\Web\TokenRestoreController;
 use App\Domains\Api\Http\Controllers\Web\UserTokensController;
@@ -67,6 +68,7 @@ Route::group(['prefix' => config('spoon.kiosk_prefix'), 'as' => config('spoon.ki
     }
 
     if (config('spoon.modules.announcements')) {
+        ROute::get('/announcement-search', SearchAnnouncementController::class)->name('announcement.search');
         Route::get('/announcements', [ManagementController::class, 'index'])->name('announcements.overview');
         Route::get('/announcement/create', [ManagementController::class, 'create'])->name('announcements.create');
         Route::post('/announcement/create', [ManagementController::class, 'store'])->name('announcements.store');

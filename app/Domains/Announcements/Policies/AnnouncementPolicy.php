@@ -21,6 +21,7 @@ class AnnouncementPolicy
      */
     public function viewAny(User $user): bool
     {
+        dd($user->roles()->get());
         return config('spoon.modules.announcements')
             && $user->canAccessKiosk()
             && $user->hasAnyRole([GroupEnum::WEBMASTER, GroupEnum::DEVELOPER]);

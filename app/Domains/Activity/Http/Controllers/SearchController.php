@@ -32,8 +32,8 @@ class SearchController extends Controller
     /**
      * Method for searching trough the logged activities in the application.
      *
-     * @param  Request  $request
-     * @param  Activity $activities
+     * @param  Request  $request    The request entity that contains all the request information.
+     * @param  Activity $activities The database model for the logged activities in the application.
      * @return Renderable
      */
     public function __invoke(Request $request, Activity $activities): Renderable
