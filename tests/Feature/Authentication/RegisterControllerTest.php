@@ -14,7 +14,9 @@ use Tests\TestCase;
 /**
  * Class RegisterControllerTest
  *
- * @package Tests\Feature\Authentication
+ * @author    Dariusz Czajkowski
+ * @copyright https://github.com/DCzajkowski/auth-tests/blob/master/LICENSE
+ * @package   Tests\Feature\Authentication
  */
 class RegisterControllerTest extends TestCase
 {

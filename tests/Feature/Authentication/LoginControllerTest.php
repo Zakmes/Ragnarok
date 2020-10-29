@@ -11,7 +11,9 @@ use Tests\TestCase;
 /**
  * Class LoginControllerTest
  *
- * @package Tests\Feature\Authentication
+ * @author    Dariusz Czajkowski
+ * @copyright https://github.com/DCzajkowski/auth-tests/blob/master/LICENSE
+ * @package   Tests\Feature\Authentication
  */
 class LoginControllerTest extends TestCase
 {
