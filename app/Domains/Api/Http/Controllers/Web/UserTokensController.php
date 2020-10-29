@@ -31,7 +31,7 @@ class UserTokensController extends Controller
      */
     public function __construct(TokenService $tokenService)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', '2fa']);
         $this->middleware('kiosk')->except(['show', 'revoke', 'store']);
 
         $this->tokenService = $tokenService;
@@ -53,9 +53,9 @@ class UserTokensController extends Controller
     }
 
     /**
-     * Show the user api token screen.
+     * Show the user api token screen in their settings.
      *
-     * @param  Request $request
+     * @param  Request $request The request instance that contains all the request information.
      * @return Renderable
      */
     public function show(Request $request): Renderable

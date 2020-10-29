@@ -8,6 +8,7 @@ use App\Support\Services\BaseService;
 use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -105,5 +106,18 @@ class TokenService extends BaseService
     public function restoreToken(PersonalAccessToken $accessToken): ?bool
     {
         return $accessToken->restore();
+    }
+
+    /**
+     * Get all the information that is needed for the kiosk dashboard.
+     *
+     * @return Collection
+     */
+    public function getDashBoardInfo(): Collection
+    {
+        return collect([
+            'countTotal' => $this->count(),
+            'countToday' => $this->model->whereDate('created_at', now()->today())->count(),
+        ]);
     }
 }

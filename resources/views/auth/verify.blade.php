@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout-auth>
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -23,4 +23,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout-auth>

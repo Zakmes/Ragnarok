@@ -19,6 +19,9 @@ class BladeComponentProvider extends ServiceProvider
         Blade::component(OverviewSubtitle::class, 'user-overview-subtitle');
         Blade::component('users._sidenav', 'account-sidenav');
         Blade::component('users.settings._sidenav', 'profile-settings-nav');
+        Blade::component('users.settings._setup-2fa', 'setup-two-factor-authentication');
+        Blade::component('users.settings._configure-2fa', 'configure-two-factor-authentication');
+        Blade::component('users.settings._configured-2fa', 'two-factor-authentication-configured');
 
         // API components
         Blade::component('api._token-modal', 'token-modal');
@@ -30,5 +33,6 @@ class BladeComponentProvider extends ServiceProvider
         Blade::component('layouts._kioskNavbar', 'kiosk-navbar');
         Blade::component('components.flashMessage', 'flash-session');
         Blade::component('layouts.app', 'app-layout');
+        Blade::component('layouts.auth', 'app-layout-auth');
     }
 }

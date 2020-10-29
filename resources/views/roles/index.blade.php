@@ -9,8 +9,8 @@
                     <x:heroicon-o-plus class="icon"/>
                 </a>
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search user role') }}">
+                <form method="GET" action="{{ kioskRoute('roles.search') }}" class="form-inline">
+                    <input type="text" name="term" value="{{ request('term') }}" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search user role') }}">
                 </form>
             </div>
         </div>
@@ -61,7 +61,13 @@
                         @empty
                             <tr>
                                 <td colspan="5" class="text-muted">
-                                    <x:heroicon-o-information-circle class="icon"/> {{ __('There are currently no user roles found.') }}
+                                    <x:heroicon-o-information-circle class="icon"/>
+
+                                    @if (request('term'))
+                                        {{ __('There are no roles found with the following keyword: :keyword', ['keyword' => request('keyword')]) }}
+                                    @else {{-- It is not a search request --}}
+                                        {{ __('There are currently no user roles found.') }}
+                                    @endif
                                 </td>
                             </tr>
                         @endforelse

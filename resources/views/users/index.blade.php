@@ -25,8 +25,8 @@
                     </div>
                 </div>
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search user by name or email ') }}">
+                <form method="GET" action="{{ kioskRoute('users.search') }}" class="form-inline">
+                    <input type="text" name="term" value="{{ request('term') }}" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search user by name or email ') }}">
                 </form>
             </div>
         </div>
@@ -114,7 +114,7 @@
                             @empty
                                 <tr>
                                     <td class="text-muted" colspan="6">
-                                        <x:heroicon-o-information-circle class="icon"/> {{ __('Currently there are no users found with the matching criteria') }}
+                                        <x:heroicon-o-information-circle class="icon"/> {{ __('Currently there are no users found with the matching criteria or search term') }}
                                     </td>
                                 </tr>
                             @endforelse
@@ -122,6 +122,17 @@
                     </table>
                 </div>
             </div>
+
+            @if ($users->hasPages())
+                <div class="card-footer border-top-0">
+                    <div class="row">
+                        <div class="col">{{ $users->links() }}</div>
+                        <div class="col text-secondary text-right my-auto">
+                            Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} out of {{ $users->total() }} results
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

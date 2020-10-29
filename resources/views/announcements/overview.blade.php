@@ -11,8 +11,8 @@
                     </a>
                 @endcan
 
-                <form method="" action="" class="form-inline">
-                    <input type="text" class="form-control form-search border-0 shadow-sm" placeholder="{{ __('Search an announcement') }}">
+                <form method="GET" action="{{ kioskRoute('announcement.search') }}" class="form-inline">
+                    <input type="text" class="form-control form-search border-0 shadow-sm" name="term" value="{{ request('term') }}" placeholder="{{ __('Search an announcement') }}">
                 </form>
             </div>
         </div>

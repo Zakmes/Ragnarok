@@ -2,11 +2,14 @@
 
 namespace Tests\Feature\Users\Http\Controllers\Settings;
 
+use App\Domains\Users\Enums\GroupEnum;
 use App\Domains\Users\Http\Controllers\Settings\UpdatePasswordController;
 use App\Domains\Users\Http\Requests\SecurityFormRequest;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
 /**
@@ -39,10 +42,11 @@ class UpdatePasswordControllerTest extends TestCase
     /** @test */
     public function canSuccessfullyChangeThePasswordInTheApplication(): void
     {
-        $me = User::factory()->make(['password' => $password = 'current-password']);
+        Permission::insert(['name' => 'change-password', 'description' => 'The user can change password from other users', 'guard_name' => 'web']);
+        $me = User::factory()->create(['password' => $password = 'current-password', 'user_group' => GroupEnum::WEBMASTER])->givePermissionTo('change-password');
         $requestData = ['currentPassword' => $password, 'password' => 'new-password', 'password_confirmation' => 'new-password'];
 
-        $this->assertActionUsesMiddleware(UpdatePasswordController::class, '__invoke', 'auth');
+        $this->assertActionUsesMiddleware(UpdatePasswordController::class, '__invoke', ['auth', '2fa']);
         $this->assertActionUsesFormRequest(UpdatePasswordController::class, '__invoke', SecurityFormRequest::class);
 
         $this->actingAs($me)
@@ -53,5 +57,7 @@ class UpdatePasswordControllerTest extends TestCase
                 'laravel_flash_message.level' => 'success',
                 'laravel_flash_message.message' => __('Your account security settings has been updated successfully.')
             ]);
+
+        $this->assertTrue(Hash::check('new-password', $me->fresh()->password));
     }
 }

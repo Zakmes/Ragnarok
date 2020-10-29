@@ -35,7 +35,7 @@ class RoleController extends Controller
      */
     public function __construct(RoleService $roleService, PermissionService $permissionService)
     {
-        $this->middleware(['auth', 'kiosk']);
+        $this->middleware(['auth', 'kiosk', '2fa']);
         $this->authorizeResource(Role::class, 'role');
 
         $this->roleService = $roleService;
@@ -108,6 +108,8 @@ class RoleController extends Controller
 
     /**
      * Method for updating the permission role in the application.
+     *
+     * @todo Implement flash session.
      *
      * @param  UpdateFormRequest $request       The request instance that contains all the request information.
      * @param  Role              $role          The resource entity from the permission role.

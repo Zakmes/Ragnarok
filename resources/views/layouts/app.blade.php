@@ -48,30 +48,40 @@
                             </li>
                         @endif
                     @else
-                        @if (config('spoon.modules.announcements'))
-                            <li class="nav-item mr-2">
-                                <a href="{{ route('announcements.index') }}" class="nav-link">
-                                    <x:heroicon-o-speakerphone class="icon mr-1"/>
-                                    <span class="badge badge-pill align-middle badge-announcement">{{ $announcementsUnread }}</span>
+                        @if (Auth::user()->canAccessKiosk())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ kioskRoute('dashboard') }}">
+                                    <x:heroicon-o-adjustments class="icon mr-1"/> {{ __('Kiosk') }}
                                 </a>
                             </li>
-                        @endif
+                        @elseif (Auth::user()->isOnKiosk())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">
+                                    <x:heroicon-o-logout class="icon mr-1"/> {{ __('Leave kiosk') }}
+                                </a>
+                            </li>
+                       @endif
 
-                        <li class="nav-item dropdown">
+                            @if (config('spoon.modules.announcements'))
+                                <li class="nav-item mr-2">
+                                    <a href="{{ route('announcements.index') }}" class="nav-link">
+                                        <x:heroicon-o-speakerphone class="icon mr-1"/>
+                                        <span class="badge badge-pill align-middle badge-announcement">{{ $announcementsUnread }}</span>
+                                    </a>
+                                </li>
+                            @endif
+
+                       <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <x:heroicon-o-user-circle class="icon mr-1"/> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu border-0 shadow-sm dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @if (Auth::user()->canAccessKiosk())
-                                    <a class="dropdown-item" href="{{ kioskRoute('dashboard') }}">
-                                        <x:heroicon-o-home class="icon text-muted mr-1"/> {{ __('Kiosk') }}
-                                    </a>
-                                @elseif (Auth::user()->isOnKiosk())
-                                    <a class="dropdown-item" href="{{ route('home') }}">
-                                        <x:heroicon-o-logout class="icon text-muted mr-1"/> {{ __('Leave kiosk') }}
-                                    </a>
-                                @endif
+                                <h6 class="dropdown-header">{{ __('Account management') }}</h6>
+
+                                <a href="" class="dropdown-item">
+                                    <x:heroicon-o-key class="icon text-muted mr-1"/> {{ __('API tokens') }}
+                                </a>
 
                                 <a class="dropdown-item" href="{{ route('account.information') }}">
                                     <x:heroicon-o-adjustments class="icon text-muted mr-1"/> {{ __('Settings') }}
@@ -87,7 +97,7 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                       </li>
                     @endguest
                 </ul>
             </div>
@@ -106,19 +116,19 @@
 
                 <div class="float-right">
                     <a class="text-decoration-none footer-link" id="toTop" href="#">
-                        <i class="fe font-weight-bold fe-chevrons-up icon-pl-1"></i> Naar boven
+                        <i class="fe font-weight-bold fe-chevrons-up icon-pl-1"></i> {{ __('to top') }}
                     </a>
 
                     <span class="dot align-middle"></span>
 
                     <a href="" target="_blank" class="footer-link text-decoration-none">
-                        Privacy
+                        {{ __('Privacy') }}
                     </a>
 
                     <span class="dot align-middle"></span>
 
                     <a href="" target="_blank" class="footer-link text-decoration-none">
-                        Terms
+                        {{ __('Terms') }}
                     </a>
                 </div>
             </div>

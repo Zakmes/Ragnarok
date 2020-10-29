@@ -28,7 +28,7 @@ class OverviewController extends Controller
      */
     public function __construct(AnnouncementService $announcementService)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', '2fa']);
         $this->announcementService = $announcementService;
     }
 

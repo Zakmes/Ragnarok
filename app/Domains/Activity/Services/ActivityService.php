@@ -7,6 +7,7 @@ use App\Support\Services\BaseService;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Str;
 
 /**
@@ -109,5 +110,19 @@ class ActivityService extends BaseService
     private function filterMatchesKeyword(?string $filter, string $keyword)
     {
         return $filter === $keyword;
+    }
+
+    /**
+     * Method for getting all the information that is needed for the dashboard.
+     *
+     * @return SupportCollection
+     */
+    public function getDashBoardInfo(): SupportCollection
+    {
+        return collect([
+            'logs' => $this->model->orderBy('id', 'DESC')->limit(10)->get(),
+            'todayCount' => $this->model->whereDate('created_at', now()->today())->count(),
+            'totalCount' => $this->count(),
+        ]);
     }
 }
