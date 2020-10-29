@@ -131,7 +131,7 @@ class UserPolicy
 
     /**
      * Method for determining if an impersonating session can be stopped.
-     * 
+     *
      * @param   User $user The resource entity from the authenticator user.
      * @return  bool
      *
