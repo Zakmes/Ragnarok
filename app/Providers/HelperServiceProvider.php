@@ -34,7 +34,7 @@ class HelperServiceProvider extends ServiceProvider
 
     /**
      * Method for getting the helper file directory.
-     * 
+     *
      * @return string
      */
     private function getHelperDirectoryPath(): string
