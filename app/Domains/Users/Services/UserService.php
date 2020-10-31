@@ -136,13 +136,11 @@ class UserService extends BaseService
     /**
      * The array of user groups in the application.
      *
-     * @todo Refactor this to an array in the Group enum
-     *
      * @return array
      */
     public function getUserGroupArray(): array
     {
-        return [GroupEnum::DEVELOPER, GroupEnum::USER, GroupEnum::WEBMASTER];
+        return GroupEnum::USERGROUPS;
     }
 
     /**

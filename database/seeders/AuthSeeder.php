@@ -23,7 +23,7 @@ class AuthSeeder extends Seeder
         $this->disableForeignKeys();
         $this->truncateMultiple(['users', 'password_resets']);
 
-        foreach ($this->getUserGroups() as $key => $group) {
+        foreach (GroupEnum::USERGROUPS as $key => $group) {
             User::create([
                 'user_group' => $group,
                 'firstname' => $group,
@@ -35,10 +35,5 @@ class AuthSeeder extends Seeder
         }
 
         $this->enableForeignKeys();
-    }
-
-    private function getUserGroups(): array
-    {
-        return [GroupEnum::WEBMASTER, GroupEnum::DEVELOPER, GroupEnum::USER];
     }
 }
