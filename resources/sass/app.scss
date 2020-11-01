@@ -1,6 +1,18 @@
 @charset "UTF-8";
 
-/// 1. Vendors
+/// 1. Configuration and helpers
+/// ----
+/// The abstract folder gathers all Sass tools and helpers across the project. Every Global variable,
+/// Should be put here in here. The rule thumb for this folder is that is should not output a single line of CSS
+/// When compiled on its own. These are nothing but Sass helpers.
+///
+/// @see https://sass-guidelin.es/#abstracts-folder
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+/// 2. Vendors
 /// ----
 /// Most projects will have a vendors/ folder containing all the CSS files from external libraries and frameworks.
 /// Like Normalize, Bootstrap, JQueryUI, FancyCarouselSliderjQueryPowered, and so on.
@@ -17,18 +29,6 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '~bootstrap/scss/bootstrap';
 @import 'vendor/datepicker';
-
-/// 2. Configuration and helpers
-/// ----
-/// The abstract folder gathers all Sass tools and helpers across the project. Every Global variable,
-/// Should be put here in here. The rule thumb for this folder is that is should not output a single line of CSS
-/// When compiled on its own. These are nothing but Sass helpers.
-///
-/// @see https://sass-guidelin.es/#abstracts-folder
-
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
 
 /// 3. Base stuff
 /// ----
