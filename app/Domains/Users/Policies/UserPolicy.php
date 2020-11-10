@@ -2,7 +2,9 @@
 
 namespace App\Domains\Users\Policies;
 
+use App\Domains\Users\Enums\GroupEnum;
 use App\User;
+use Lab404\Impersonate\Services\ImpersonateManager;
 
 /**
  * Class UserPolicy
@@ -105,5 +107,41 @@ class UserPolicy
     public function changePassword(User $user): bool
     {
         return $user->hasKioskUserGroup() && $user->hasPermissionTo('change-password');
+    }
+
+    /**
+     * Method for determining whether the user can impersonate other users or not.
+     *
+     * @param  User        $user      The resource entity from the authenticated user.
+     * @param  User        $model     The resource entity from the given user.
+     * @param  string|null $guardName The authentication guard name
+     * @return bool
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function impersonate(User $user, User $model, ?string $guardName = null): bool
+    {
+        $impersonateManager = app()->make(ImpersonateManager::class);
+
+        return $user->isNot($model)
+            && $user->user_group === GroupEnum::WEBMASTER
+            && ! $impersonateManager->isImpersonating()
+            && $user->canImpersonate();
+    }
+
+    /**
+     * Method for determining if an impersonating session can be stopped.
+     *
+     * @param   User $user The resource entity from the authenticator user.
+     * @return  bool
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function leaveImpersonation(User $user): bool
+    {
+        $impersonateManager = app()->make(ImpersonateManager::class);
+
+        return $user->user_group && GroupEnum::WEBMASTER
+            && $impersonateManager->isImpersonating();
     }
 }
