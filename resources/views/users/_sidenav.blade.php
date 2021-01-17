@@ -21,6 +21,12 @@
         </a>
     @endcan
 
+    @can('impersonate', [$user])
+        <a href="{{ kioskRoute('users.impersonate', $user) }}" class="list-group-item list-group-item-action">
+            <x-heroicon-o-login class="icon mr-2"/> {{ __('Impersonate user') }}
+        </a>
+    @endcan
+
     @can ('delete', $user)
         <a href="{{ kioskRoute('users.destroy', $user) }}" class="{{ kioskActive('users.destroy') }} list-group-item list-group-item-action">
             <x:heroicon-o-trash class="icon mr-2 text-danger"/> {{ __('Delete :user', ['user' => $user->name]) }}

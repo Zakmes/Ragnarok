@@ -1,0 +1,26 @@
+.announcement-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.announcement-creator {
+    width: 34% !important;
+}
+
+.announcement-title {
+    width: 67% !important;
+}
+
+.announcement-visibility,
+.announcement-status,
+.announcement-period {
+    width: 33% !important;
+}
+
+.announcement-action-text {
+    color: $tw-purple-500;
+
+    &:hover {
+        color: $tw-purple-600;
+    }
+}

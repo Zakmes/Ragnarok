@@ -13,6 +13,11 @@ use RecursiveIteratorIterator;
  */
 class HelperServiceProvider extends ServiceProvider
 {
+    /**
+     * Method for booting application services.
+     *
+     * @return void
+     */
     public function boot(): void
     {
         $recursiveDirectoryIterator = new RecursiveDirectoryIterator($this->getHelperDirectoryPath());
@@ -27,11 +32,22 @@ class HelperServiceProvider extends ServiceProvider
         }
     }
 
-    private function getHelperDirectoryPath()
+    /**
+     * Method for getting the helper file directory.
+     *
+     * @return string
+     */
+    private function getHelperDirectoryPath(): string
     {
         return app_path('Support' . DIRECTORY_SEPARATOR . 'Helpers');
     }
 
+    /**
+     * Function for determining if the file is an helper file or not.
+     *
+     * @param  RecursiveIteratorIterator $iterator
+     * @return bool
+     */
     private function isHelperFile(RecursiveIteratorIterator $iterator): bool
     {
         return ! $iterator->isDot()
