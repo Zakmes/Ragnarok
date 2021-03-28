@@ -2,6 +2,7 @@
 
 namespace App\Domains\Users\Actions;
 
+use App\Domains\Users\Notifications\UserCreatedNotification;
 use App\User;
 use Illuminate\Support\Str;
 use Spatie\DataTransferObject\DataTransferObject;
@@ -27,7 +28,10 @@ class CreateAction extends BaseAction
         $password = $this->generatePassword();
         $userInformation = array_merge($dataTransferObject->except('role')->toArray(), $password);
 
-        return $this->userService->registerUser($userInformation, $role);
+        $user = $this->userService->registerUser($userInformation, $role);
+        $user->notify(new UserCreatedNotification($password));
+
+        return $user;
     }
 
     /**
